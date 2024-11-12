@@ -6,11 +6,19 @@
         "build": "vite build"
     },
     "devDependencies": {
+        "@shufo/prettier-plugin-blade": "^1.14.1",
         "autoprefixer": "^10.4.20",
         "axios": "^1.6.4",
         "laravel-vite-plugin": "^1.0.0",
         "postcss": "^8.4.47",
+        "prettier": "^3.3.3",
+        "prettier-plugin-blade": "^2.1.19",
         "tailwindcss": "^3.4.14",
+        "typescript": "^5.6.3",
         "vite": "^5.0.0"
+    },
+    "dependencies": {
+        "@preline/overlay": "^2.5.0",
+        "preline": "^2.5.1"
     }
 }

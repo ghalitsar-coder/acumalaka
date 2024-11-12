@@ -17,7 +17,17 @@
             <h2 class="text-gray-700 text-sm font-bold mb-2">Author</h2>
             <p class="text-gray-700">{{ $book->author }}</p>
         </div>
-
+        <div class="mb-4">
+            <h2 class="text-gray-700 text-sm font-bold mb-2">Year Published</h2>
+            <p class="text-gray-700">{{ $book->year_published }}</p>
+        </div>
+<!-- 
         <div class="mb-4">
             <h2 class="text-gray-700 text-sm font-bold mb-2">Description</h2>
-            <p class="text-gray-
+            <p class="text-gray- -->
+
+             
+
+        </div>
+    </div>
+@endsection 
