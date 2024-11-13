@@ -10,9 +10,8 @@
     <!-- Navigation Links -->
     <div class="flex-grow overflow-y-auto">
         <ul class="space-y-4  px-4">
-            <li>
+            <!-- <li>
                 <a
-                    href="{{ route('books.index') }}"
                     class="flex items-center rounded-md p-2 text-white hover:bg-indigo-600">
                     <svg
                         class="mr-3 h-5 w-5"
@@ -28,7 +27,7 @@
                     </svg>
                     Books
                 </a>
-            </li>
+            </li> -->
             <li>
                 <a
                     href="{{ route('staff.index') }}"

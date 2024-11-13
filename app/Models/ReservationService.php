@@ -16,7 +16,6 @@ class ReservationService extends Model
     protected $fillable = [
         'id_reservation',
         'id_service',
-        'quantity',
         'total_price',
     ];
 
@@ -27,7 +26,10 @@ class ReservationService extends Model
     {
         return $this->belongsTo(Reservation::class, 'id_reservation');
     }
-
+    public function payment()
+    {
+        return $this->hasOne(Payment::class, 'id_reservation_service','id_reservation_service');
+    }
     /**
      * Get the service associated with the reservation service.
      */

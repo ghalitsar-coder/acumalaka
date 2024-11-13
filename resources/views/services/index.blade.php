@@ -33,7 +33,7 @@
                         </td>
                         <td
                             class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">
-                            {{ $service->service_name }}
+                            {{ $service->service_type }}
                         </td>
                         <td
                             class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">

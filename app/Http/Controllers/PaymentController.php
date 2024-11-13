@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Payment;
 use App\Models\Reservation;
+use App\Models\ReservationService;
 use App\Models\Staff;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -29,7 +30,8 @@ class PaymentController extends Controller
      */
     public function create()
     {
-        $reservations = Reservation::whereDoesntHave('payment')->get();
+        $reservations = ReservationService::whereDoesntHave('payment')->with(['reservation.guest', 'service'])
+        ->get();
         // $reservations = Reservation::with('guest')->get();
         $staff = Staff::all();
         return view('payment.create', compact('reservations', 'staff'));
@@ -44,7 +46,7 @@ class PaymentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id_reservation' => 'required|exists:reservations,id_reservation',
+            'id_reservation_service' => 'required|exists:reservation_services,id_reservation_service',
             'id_staff' => 'required|exists:staff,id_staff',
             // 'amount' => 'required|decimal',
             'payment_date' => 'required|date',
@@ -56,11 +58,12 @@ class PaymentController extends Controller
         // try {
             // Your validation code here...
     
-            $reservation = Reservation::findOrFail($request->id_reservation);
+            $reservationService = ReservationService::findOrFail($request->id_reservation_service);
+            $reservation = Reservation::findOrFail($reservationService->id_reservation);
     
             // Create the payment
             Payment::create([
-                'id_reservation' => $request->id_reservation,
+                'id_reservation_service' => $request->id_reservation_service,
                 'id_staff' => $request->id_staff,
                 'amount' => $reservation->total_price,
                 'payment_date' => $request->payment_date,

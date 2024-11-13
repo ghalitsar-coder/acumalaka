@@ -29,20 +29,21 @@
             @csrf
             <!-- Reservation Select -->
             <div class="mb-4">
-                <label for="id_reservation" class="block text-sm font-medium">Select Reservation</label>
-                <select name="id_reservation" id="id_reservation"
+                <label for="id_reservation_service" class="block text-sm font-medium">Select Reservation Service</label>
+                <select name="id_reservation_service" id="id_reservation_service"
                     class="mt-1 block w-full rounded-md border border-gray-300 py-1.5">
-                    <option value="">Select a Reservation</option>
-                    @foreach ($reservations as $reservation)
-                        <option value="{{ $reservation->id_reservation }}"
-                            {{ old('id_reservation') == $reservation->id_reservation ? 'selected' : '' }}>
-                            Reservation #{{ $reservation->id_reservation }} -
-                            {{ optional($reservation->guest)->first_name ?? 'N/A' }}
-                            (${{ $reservation->total_price }})
+                    <option value="">Select a Reservation Service</option>
+                    @foreach ($reservations as $reservationService)
+                        <option value="{{ $reservationService->id_reservation_service }}"
+                            {{ old('id_reservation_service') == $reservationService->id_reservation_service ? 'selected' : '' }}>
+                            Reservation #{{ $reservationService->reservation->id_reservation }} -
+                            {{ optional($reservationService->reservation->guest)->first_name ?? 'N/A' }} -
+                            Service: {{ $reservationService->service->service_type }}
+                            (${{ $reservationService->total_price }})
                         </option>
                     @endforeach
                 </select>
-                @error('id_reservation')
+                @error('id_reservation_service')
                     <span class="text-sm text-red-500">{{ $message }}</span>
                 @enderror
             </div>
@@ -65,7 +66,6 @@
             </div>
 
             <!-- Other payment fields -->
-         
 
             <div class="mb-4">
                 <label for="payment_date" class="block text-sm font-medium">Payment Date</label>

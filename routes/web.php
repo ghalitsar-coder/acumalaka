@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 
 // Redirect root to books index
 Route::get('/', function () {
-    return redirect()->route('books.index');
+    return redirect()->route('reservation.index');
 });
 
 // Authentication Routes
@@ -26,8 +26,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
     
     // Books Routes - Protected by authentication
-    Route::resource('books', BookController::class);
     Route::resource('rooms', RoomController::class);
+    Route::resource('books', BookController::class);
     Route::resource('guests', GuestController::class);
     Route::resource('staff', StaffController::class);
     Route::resource('services', ServiceController::class);

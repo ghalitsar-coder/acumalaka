@@ -46,6 +46,23 @@
                     <span class="text-sm text-red-500">{{ $message }}</span>
                 @enderror
             </div>
+            <div class="mb-4">
+                <label for="id_service" class="block text-sm font-medium">Select service</label>
+                <select name="id_service" id="id_service"
+                    class="mt-1 block w-full rounded-md border border-gray-300 py-1.5" required>
+                    <option value="">Select a service</option>
+                    @foreach ($services as $service)
+                        <option value="{{ $service->id_service }}"
+                            {{ old('id_service') == $service->id_service ? 'selected' : '' }}>
+                            #{{ $service->service_type }} - ${{ $service->price }}
+                        </option>
+                    @endforeach
+                </select>
+
+                @error('id_service')
+                    <span class="text-sm text-red-500">{{ $message }}</span>
+                @enderror
+            </div>
 
             <div class="mb-4">
                 <label for="id_guest" class="block text-sm font-medium">Select guest</label>
@@ -108,20 +125,20 @@
                 @enderror
             </div>
             <!-- <div class="mb-4">
-                <label for="status" class="block text-sm font-medium">Payment Status</label>
-                <select name="status" id="status"
-                    class="mt-1 block w-full rounded-md border border-gray-300 py-1.5">
-                    <option value="">Select Payment Status</option>
-                    <option value="confirmed" {{ old('status') == 'confirmed' ? 'selected' : '' }}>confirmed</option>
-                    <option value="checked_in" {{ old('status') == 'checked_in' ? 'selected' : '' }}>checked_in
-                    </option>
-                    <option value="checked_out" {{ old('status') == 'checked_out' ? 'selected' : '' }}>checked_out</option>
-                    <option value="cancelled" {{ old('status') == 'cancelled' ? 'selected' : '' }}>cancelled</option>
-                </select>
-                @error('status')
-                    <span class="text-sm text-red-500">{{ $message }}</span>
-                @enderror
-            </div> -->
+                    <label for="status" class="block text-sm font-medium">Payment Status</label>
+                    <select name="status" id="status"
+                        class="mt-1 block w-full rounded-md border border-gray-300 py-1.5">
+                        <option value="">Select Payment Status</option>
+                        <option value="confirmed" {{ old('status') == 'confirmed' ? 'selected' : '' }}>confirmed</option>
+                        <option value="checked_in" {{ old('status') == 'checked_in' ? 'selected' : '' }}>checked_in
+                        </option>
+                        <option value="checked_out" {{ old('status') == 'checked_out' ? 'selected' : '' }}>checked_out</option>
+                        <option value="cancelled" {{ old('status') == 'cancelled' ? 'selected' : '' }}>cancelled</option>
+                    </select>
+                    @error('status')
+        <span class="text-sm text-red-500">{{ $message }}</span>
+    @enderror
+                </div> -->
 
             <div class="flex items-center justify-between">
                 <button

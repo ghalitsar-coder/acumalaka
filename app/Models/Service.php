@@ -14,7 +14,7 @@ class Service extends Model
     protected $primaryKey = 'id_service';
 
     protected $fillable = [
-        'service_name',
+        'service_type',
         'description',
         'price',
     ];
@@ -22,8 +22,13 @@ class Service extends Model
     /**
      * Get the reservation services associated with the service.
      */
-    public function reservationServices()
+    public function reservations()
     {
-        return $this->hasMany(ReservationService::class, 'id_service');
+        return $this->belongsToMany(
+            Reservation::class,
+            'reservation_services',
+            'id_service',      // Foreign key on pivot table referring to services table
+            'id_reservation'   // Foreign key on pivot table referring to reservations table
+        );
     }
 }

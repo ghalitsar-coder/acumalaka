@@ -22,7 +22,7 @@ class RoomSeeder extends Seeder
             'room_type' => 'Double',
             'capacity' => 2,
             'price_per_night' => 150.00,
-            'status' => 'occupied',
+            'status' => 'available',
         ]);
     }
 }

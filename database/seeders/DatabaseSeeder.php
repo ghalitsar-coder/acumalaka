@@ -9,14 +9,15 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
+            UserSeeder::class,
             BookSeeder::class,
             RoomSeeder::class,
             GuestSeeder::class,
             StaffSeeder::class,
             ServiceSeeder::class,
-            ReservationSeeder::class,
-            PaymentSeeder::class,
-            ReservationServiceSeeder::class,
+            // ReservationSeeder::class,
+            // PaymentSeeder::class,
+            // ReservationServiceSeeder::class,
         ]);
     }
 }

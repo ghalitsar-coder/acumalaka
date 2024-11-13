@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reservation;
+use App\Models\ReservationService;
+use App\Models\Service;
 use App\Models\Guest;
 use App\Models\Room;
 use App\Models\Staff;
@@ -17,18 +19,18 @@ class ReservationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $reservations = Reservation::with('guest', 'room', 'staff')->get()->map(function ($reservation) {
-            // Format the check-in and check-out dates
-            $reservation->formatted_check_in_date = Carbon::parse($reservation->check_in_date)->translatedFormat('d M Y');
-            $reservation->formatted_check_out_date = Carbon::parse($reservation->check_out_date)->translatedFormat('d M Y');
-            return $reservation;
-        });
-    
-        return view('reservation.index', compact('reservations')); 
-        
-        // Pass data to reservation.index view
-    }
+{
+        $reservations = Reservation::with('guest', 'room', 'staff', 'services')
+            ->get()
+            ->map(function ($reservation) {
+                // Format the check-in and check-out dates
+                $reservation->formatted_check_in_date = Carbon::parse($reservation->check_in_date)->translatedFormat('d M Y');
+                $reservation->formatted_check_out_date = Carbon::parse($reservation->check_out_date)->translatedFormat('d M Y');
+                return $reservation;
+            });
+        return view('reservation.index', compact('reservations'));
+}
+
 
     /**
      * Show the form for creating a new reservation.
@@ -38,10 +40,11 @@ class ReservationController extends Controller
     public function create()
     {
         $guests = Guest::with('reservations')->get();
+        $services = Service::all();
         $rooms = Room::where('status', 'available')->get();
         $staffs = Staff::all();  // Fetch all staff members
 
-        return view('reservation.create', compact('guests', 'rooms', 'staffs'));  // Pass data to create view
+        return view('reservation.create', compact('guests', 'rooms', 'staffs','services'));  // Pass data to create view
     }
 
     /**
@@ -70,6 +73,7 @@ class ReservationController extends Controller
 
     // Find the room based on the selected room ID
     $room = Room::find($request->id_room);
+    $service = Service::find( $request->id_service);
 
     // Calculate the number of days between check-in and check-out dates
     $checkInDate = Carbon::parse($request->check_in_date);
@@ -77,13 +81,14 @@ class ReservationController extends Controller
     $days = $checkOutDate->diffInDays($checkInDate);
 
     // Calculate the total price based on the room's price per night and the number of days
-    $totalPrice = $room->price_per_night * $days;
+    $totalPrice = ($room->price_per_night + $service->price) * $days;
 
     // Update the room status to 'occupied'
     $room->update(['status' => 'occupied']);
 
+    
     // Create the reservation with the validated and calculated data
-    Reservation::create([
+    $reservation = Reservation::create([
         'id_room' => $request->id_room,
         'id_guest' => $request->id_guest,
         'id_staff' => $request->id_staff,
@@ -91,6 +96,12 @@ class ReservationController extends Controller
         'check_out_date' => $request->check_out_date,
         'total_price' => $totalPrice,
     ]);
+
+    ReservationService::create([
+        'id_reservation' => $reservation->id_reservation,
+        'id_service' => $request->id_service,
+        'total_price' => $totalPrice,
+    ]); 
 
     // Redirect to the reservation index page with a success message
     return redirect()->route('reservation.index')->with('success', 'Reservation created successfully!');

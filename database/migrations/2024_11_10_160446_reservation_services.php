@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id('id_reservation_service');
             $table->foreignId('id_reservation')->constrained('reservations', 'id_reservation');
             $table->foreignId('id_service')->constrained('services', 'id_service');
-            $table->integer('quantity');
             $table->decimal('total_price', 10, 2);
             $table->timestamps();
         });

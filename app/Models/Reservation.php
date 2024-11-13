@@ -50,16 +50,21 @@ class Reservation extends Model
     /**
      * Get the payment associated with the reservation.
      */
-    public function payment()
-    {
-        return $this->hasOne(Payment::class, 'id_reservation',);
-    }
+    
 
     /**
      * Get the services associated with the reservation.
      */
+
+    // In Reservation.php
     public function services()
     {
-        return $this->hasMany(ReservationService::class, 'id_reservation');
+        return $this->belongsToMany(
+            Service::class,
+            'reservation_services',
+            'id_reservation',  // Foreign key on pivot table referring to reservations table
+            'id_service'       // Foreign key on pivot table referring to services table
+        );
     }
+
 }

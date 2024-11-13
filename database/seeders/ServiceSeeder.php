@@ -16,13 +16,13 @@ class ServiceSeeder extends Seeder
     public function run()
     {
         Service::create([
-            'service_name' => 'Room Cleaning',
+            'service_type' => 'standard',
             'description' => 'Daily cleaning of rooms.',
             'price' => 20.00,
         ]);
 
         Service::create([
-            'service_name' => 'Spa',
+            'service_type' => 'luxury',
             'description' => 'Relaxing spa treatment.',
             'price' => 50.00,
         ]);

@@ -14,7 +14,7 @@ class Payment extends Model
     protected $primaryKey = 'id_payment';
 
     protected $fillable = [
-        'id_reservation',
+        'id_reservation_service',
         'id_staff',
         'amount',
         'payment_date',
@@ -25,9 +25,9 @@ class Payment extends Model
     /**
      * Get the reservation associated with the payment.
      */
-    public function reservation()
+    public function reservationService()
     {
-        return $this->belongsTo(Reservation::class, 'id_reservation');
+        return $this->belongsTo(ReservationService::class, 'id_reservation_service','id_reservation_service');
     }
 
     /**
