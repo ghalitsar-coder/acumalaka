@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mx-auto  px-4 py-8">
+    <div class="container mx-auto = px-4 py-8">
         <button class="rounded-lg bg-indigo-600 px-2.5 py-1.5 font-semibold text-white shadow-sm">
             <a href="{{ route('reservation.create') }}">Add new Reservation</a>
         </button>

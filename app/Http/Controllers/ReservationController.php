@@ -101,6 +101,7 @@ class ReservationController extends Controller
         'id_reservation' => $reservation->id_reservation,
         'id_service' => $request->id_service,
         'total_price' => $totalPrice,
+        // 'quantity' => 1,
     ]); 
 
     // Redirect to the reservation index page with a success message
@@ -128,20 +129,22 @@ class ReservationController extends Controller
     public function edit($id)
     {
         $reservation = Reservation::findOrFail($id);  // Fetch the reservation by ID
+        $reservationService = ReservationService::findOrFail($reservation->id_reservation);  // Fetch the reservation by ID
         // dd($reservation->all());
         // $guests = Guest::all();  // Fetch all guests
         // $rooms = Room::all();    // Fetch all rooms
         // $staffs = Staff::all();  // Fetch all staff members
-
+        
         // return view('reservation.edit', compact('reservation', 'guests', 'rooms', 'staffs'));  // Pass data to edit view
         $guests = Guest::with('reservations')->get();
+        $services = Service::all();
         $rooms = Room::where('status', 'available')
                 ->orWhere('id_room', $reservation->id_room)
                 ->get();
         // $rooms = Room::all();
         $staffs = Staff::all();  // Fetch all staff members
 
-        return view('reservation.edit', compact('reservation','guests', 'rooms', 'staffs'));  
+        return view('reservation.edit', compact('reservation','guests', 'rooms', 'staffs','services','reservationService'));  
     }
 
     /**
@@ -171,17 +174,21 @@ class ReservationController extends Controller
 
      // Find the reservation by its ID
      $reservation = Reservation::findOrFail($id);
+     $reservationService = ReservationService::findOrFail($reservation->id_reservation);
 
         // Find the reservation and update it
         $room = Room::find($request->id_room);
-
+        $service = Service::find($request->id_service);
+        
+        
         // Calculate the number of days between check-in and check-out dates
         $checkInDate = Carbon::parse($request->check_in_date);
         $checkOutDate = Carbon::parse($request->check_out_date);
         $days = $checkOutDate->diffInDays($checkInDate);
     
         // Calculate the total price based on the room's price per night and the number of days
-        $totalPrice = $room->price_per_night * $days;
+        $totalPrice = ($room->price_per_night + $service->price) * $days;
+
     
         if ($reservation->id_room != $request->id_room) {
             Room::where('id_room', $reservation->id_room)->update(['status' => 'available']);
@@ -196,7 +203,17 @@ class ReservationController extends Controller
             'check_out_date' => $request->check_out_date,
             'total_price' => $totalPrice,
         ]);
+        // if($request->id_service != $reservationService->id_service) {
+            $reservationService->update([
+            'id_service' => $request->id_service,
+            'id_room' => $request->id_room,
+            'id_staff' => $request->id_staff,
+            'total_price' => $totalPrice,
 
+            // 'quantity' => 1,
+
+        ]);
+    // }
         return redirect()->route('reservation.index')->with('success', 'Reservation updated successfully!');
     }
 

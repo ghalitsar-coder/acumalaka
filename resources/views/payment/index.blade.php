@@ -44,6 +44,10 @@
                     </th>
                     <th
                         class="px-6 py-4 text-sm font-medium uppercase tracking-wider text-gray-900">
+                        Payment Status
+                    </th>
+                    <th
+                        class="px-6 py-4 text-sm font-medium uppercase tracking-wider text-gray-900">
                         Action
                     </th>
                 </tr>
@@ -55,11 +59,11 @@
                         {{ $loop->iteration }}
                         </td>
                         <td class="px-6 py-4 text-sm text-gray-700">
-                            {{ $payment->reservation->id_reservation }}
+                            {{ $payment->reservationService->id_reservation }}
                         </td>
                         <td class="px-6 py-4 text-sm text-gray-700">
-                            {{ $payment->reservation->guest->first_name }}
-                            {{ $payment->reservation->guest->last_name }}
+                            {{ $payment->reservationService->reservation->guest->first_name }}
+                            {{ $payment->reservationService->reservation->guest->last_name }}
                         </td>
                         <td class="px-6 py-4 text-sm text-gray-700">
                             {{ $payment->staff->first_name }}
@@ -73,6 +77,9 @@
                         </td>
                         <td class="px-6 py-4 text-sm text-gray-700">
                             {{ $payment->payment_method }}
+                        </td>
+                        <td class="px-6 py-4 text-sm text-gray-700">
+                            {{ $payment->payment_status }}
                         </td>
                         <td class="flex gap-2 px-6 py-4">
                             <a

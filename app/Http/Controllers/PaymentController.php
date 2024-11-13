@@ -19,7 +19,7 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        $payments = Payment::with('reservation', 'staff')->get();
+        $payments = Payment::with('reservationService', 'staff')->get();
         return view('payment.index', compact('payments'));
     }
 
@@ -45,6 +45,7 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'id_reservation_service' => 'required|exists:reservation_services,id_reservation_service',
             'id_staff' => 'required|exists:staff,id_staff',
@@ -55,7 +56,7 @@ class PaymentController extends Controller
             
         ]);
 
-        // try {
+        try {
             // Your validation code here...
     
             $reservationService = ReservationService::findOrFail($request->id_reservation_service);
@@ -71,11 +72,11 @@ class PaymentController extends Controller
                 'payment_status' => $request->payment_status
             ]);
     
-            // dd('Payment created successfully!', $reservation->total_price);
+            // dd('Payment created successfully!');
     
-        // } catch (\Exception $e) {
-        //     dd('Error creating payment:', $e->getMessage());
-        // }
+        } catch (\Exception $e) {
+            dd('Error creating payment:', $e->getMessage() , $request->all());
+        }
 
         return redirect()->route('payment.index')->with('success', 'Payment created successfully!');
     }
@@ -109,7 +110,6 @@ class PaymentController extends Controller
                 Rule::exists('reservations', 'id_reservation'),
             ],
             'id_staff' => 'required|exists:staff,id_staff',
-            'amount' => 'required|numeric|min:0',
             'payment_date' => 'required|date',
             'payment_method' => 'required|string|max:50',
             'payment_status' => 'required|in:pending,completed,failed,success'

@@ -53,6 +53,24 @@
             </div>
 
             <div class="mb-4">
+                <label for="id_service" class="block text-sm font-medium">Select service</label>
+                <select name="id_service" id="id_service"
+                    class="mt-1 block w-full rounded-md border border-gray-300 py-1.5" required>
+                    <option value="">Select a service</option>
+                    @foreach ($services as $service)
+                        <option value="{{ $service->id_service }}"
+                            {{ $reservationService->id_service == $service->id_service ? 'selected' : '' }}>
+                            #{{ $service->service_type }} - ${{ $service->price }}
+                        </option>
+                    @endforeach
+                </select>
+
+                @error('id_service')
+                    <span class="text-sm text-red-500">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="mb-4">
                 <label for="id_staff" class="block text-sm font-medium">Select Staff</label>
                 <select name="id_staff" id="id_staff" class="mt-1 block w-full rounded-md border border-gray-300 py-1.5">
                     @foreach ($staffs as $s)
@@ -82,7 +100,7 @@
                                 @if ($reservation->id_guest == $guest->id_guest)
                                     (Reserved)
                                 @else
-                                    Already has reservation 
+                                    Already has reservation
                                 @endif
                             @endif
                         </option>

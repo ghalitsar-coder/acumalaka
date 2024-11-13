@@ -22,14 +22,19 @@ class RoomController extends Controller
 
     public function store(Request $request)
     {
+          // Validate the incoming data
         $validated = $request->validate([
             'room_number' => 'required|string|max:10|unique:rooms',
-            'room_type' => 'required|string|max:50',
-            'capacity' => 'required|integer|min:1',
-            'price_per_night' => 'required|numeric|min:0',
-            'status' => 'required|string|max:20',
+            'room_type' => 'required|in:single,double,queen,king',
         ]);
 
+        // Automatically set the capacity and price based on room type
+        $roomDetails = $this->getRoomDetails($validated['room_type']);
+
+        // Merge the automatically set values with the validated data
+        $validated = array_merge($validated, $roomDetails);
+
+        // Create the room with the merged data
         Room::create($validated);
         return redirect()->route('rooms.index')->with('success', 'Room created successfully');
     }
@@ -43,16 +48,39 @@ class RoomController extends Controller
     {
         return view('rooms.edit', compact('room'));
     }
+    private function getRoomDetails($roomType)
+    {   
+    switch ($roomType) {
+        case 'single':
+            return ['capacity' => 1, 'price_per_night' => 100];
+        case 'double':
+            return ['capacity' => 2, 'price_per_night' => 150];
+        case 'queen':
+            return ['capacity' => 3, 'price_per_night' => 200];
+        case 'king':
+            return ['capacity' => 4, 'price_per_night' => 250];
+        default:
+            return ['capacity' => 1, 'price_per_night' => 100]; // Fallback if something goes wrong
+    }
+}
 
     public function update(Request $request, Room $room)
     {
         $validated = $request->validate([
             'room_number' => 'required|string|max:10|unique:rooms,room_number,'.$room->id_room.',id_room',
             'room_type' => 'required|string|max:50',
-            'capacity' => 'required|integer|min:1',
-            'price_per_night' => 'required|numeric|min:0',
-            'status' => 'required|string|max:20',
+            'status' => 'required|in:available,occupied,maintenance,cleaning'
         ]);
+
+   
+
+        // Automatically set the capacity and price based on room type
+        $roomDetails = $this->getRoomDetails($validated['room_type']);
+
+        // Merge the automatically set values with the validated data
+        $validated = array_merge($validated, $roomDetails);
+
+        // Create the room with the merged data
 
         $room->update($validated);
         return redirect()->route('rooms.index')->with('success', 'Room updated successfully');

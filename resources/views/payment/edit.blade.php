@@ -66,13 +66,7 @@
                 @enderror
             </div>
 
-            <!-- Other payment fields -->
-            <div class="mb-4">
-                <label for="amount" class="block text-sm font-medium">Amount</label>
-                <input type="number" name="amount" id="amount"
-                    value="{{ $payment->amount }}"
-                    class="mt-1 block w-full rounded-md border-gray-300">
-            </div>
+         
 
             <div class="mb-4">
                 <label for="payment_method" class="block text-sm font-medium">Payment Method</label>

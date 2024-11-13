@@ -3,9 +3,9 @@
 @section('content')
     <div class="mx-auto max-w-2xl">
         <div class="mb-6">
-            <h1 class="text-3xl font-bold">Edit guest</h1>
+            <h1 class="text-3xl font-bold">Edit room</h1>
             <a
-                href="{{ route('guests.index') }}"
+                href="{{ route('rooms.index') }}"
                 class="text-blue-500 hover:text-blue-700">
                 Back to List
             </a>
@@ -23,7 +23,7 @@
         @endif
 
         <form
-            action="{{ route('guests.update', $guest->id_guest) }}"
+            action="{{ route('rooms.update', $room->id_room) }}"
             method="POST"
             class="mb-4 rounded bg-white px-8 pb-8 pt-6 shadow-md">
             @csrf
@@ -32,85 +32,78 @@
             <div class="mb-4">
                 <label
                     class="mb-2 block text-sm font-bold text-gray-700"
-                    for="first_name">
-                    first_name
+                    for="room_number">
+                    Room Number
                 </label>
                 <input
                     class="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
-                    id="first_name"
-                    type="text"
-                    name="first_name"
-                    value="{{ $guest->first_name }}"
-                    required />
-            </div>
-
-            <div class="mb-4">
-                <label
-                    class="mb-2 block text-sm font-bold text-gray-700"
-                    for="last_name">
-                    last_name
-                </label>
-                <input
-                    class="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
-                    id="last_name"
-                    type="text"
-                    name="last_name"
-                    value="{{ $guest->last_name }}"
-                    required />
-            </div>
-
-            <div class="mb-4">
-                <label
-                    class="mb-2 block text-sm font-bold text-gray-700"
-                    for="email">
-                    Email
-                </label>
-                <input
-                    class="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
-                    id="email"
-                    type="email"
-                    name="email"
-                    value="{{ $guest->email }}"
-                    required />
-            </div>
-            <div class="mb-4">
-                <label
-                    class="mb-2 block text-sm font-bold text-gray-700"
-                    for="phone">
-                    Phone Number
-                </label>
-                <input
-                    class="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
-                    id="phone"
+                    id="room_number"
+                    name="room_number"
                     type="number"
-                    name="phone"
-                    value="{{ $guest->phone }}"
+                    value="{{ $room->room_number }}"
                     required />
+            </div>
+            <div class="mb-4">
+                <label for="room_type" class="block text-sm font-medium">Room type</label>
+                <select name="room_type" id="room_type" class="mt-1 block w-full rounded-md border border-gray-300 py-1.5">
+                    <option value="single" {{ $room->room_type == 'single' ? 'selected' : '' }}>single</option>
+                    <option value="double" {{ $room->room_type == 'double' ? 'selected' : '' }}>double
+                    </option>
+                    <option value="queen" {{ $room->room_type == 'queen' ? 'selected' : '' }}>queen</option>
+                    <option value="king" {{ $room->room_type == 'king' ? 'selected' : '' }}>king</option>
+                </select>
             </div>
 
             <div class="mb-4">
                 <label
                     class="mb-2 block text-sm font-bold text-gray-700"
-                    for="address">
-                    address
+                    for="capacity">
+                    Capacity
                 </label>
-                <textarea
-                    class="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
-                    id="address"
-                    name="address"
-                    rows="4"
-                    required>
-    {{ $guest->address }}</textarea>
+                <input
+                    class="focus:shadow-outline read-only:bg-slate-200 w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
+                    id="capacity"
+                    type="number"
+                    name="capacity"
+                    value="{{ $room->capacity }}"
+                    readonly />
             </div>
 
+            <div class="mb-4">
+                <label
+                    class="mb-2 block text-sm font-bold text-gray-700"
+                    for="price_per_night">
+                    Price per night
+                </label>
+                <input
+                    class="focus:shadow-outline read-only:bg-slate-200 w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
+                    id="price_per_night"
+                    type="price_per_night"
+                    name="price_per_night"
+                    value="{{ $room->price_per_night }}"
+                    readonly />
+            </div>
+
+            <div class="mb-4">
+                <label for="status" class="block text-sm font-medium">Status</label>
+                <select name="status" id="status" class="mt-1 block w-full rounded-md border border-gray-300 py-1.5">
+                    <option value="available" {{ $room->status == 'available' ? 'selected' : '' }}>available</option>
+                    <option value="occupied" {{ $room->status == 'occupied' ? 'selected' : '' }}>occupied
+                    </option>
+                    <option value="cleaning" {{ $room->status == 'cleaning' ? 'selected' : '' }}>cleaning</option>
+                    <option value="maintenance" {{ $room->status == 'maintenance' ? 'selected' : '' }}>maintenance</option>
+                </select>
+            </div>
             <div class="flex items-center justify-between">
                 <button
                     class="focus:shadow-outline rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:outline-none"
                     type="submit">
-                    Update guest
+                    Update room
                 </button>
             </div>
         </form>
     </div>
+    <script src="{{ asset('js/autofill.js') }}"></script>
+
 @endsection
 

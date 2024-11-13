@@ -20,10 +20,7 @@
                         class="px-6 py-4 text-left text-xs font-medium uppercase tracking-wider text-gray-900">
                         Service
                     </th>
-                    <th
-                        class="px-6 py-4 text-left text-xs font-medium uppercase tracking-wider text-gray-900">
-                        Quantity
-                    </th>
+                   
                     <th
                         class="px-6 py-4 text-left text-xs font-medium uppercase tracking-wider text-gray-900">
                         Total Price
@@ -43,15 +40,12 @@
                         </td>
                         <td
                             class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">
-                            {{ $reservationService->service->service_name }}
+                            {{ $reservationService->service->service_type }}
                         </td>
+                      
                         <td
                             class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">
-                            {{ $reservationService->quantity }}
-                        </td>
-                        <td
-                            class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">
-                            {{ $reservationService->total_price }}
+                            ${{ $reservationService->total_price }}
                         </td>
                     </tr>
                 @endforeach

@@ -23,83 +23,68 @@
         @endif
 
         <form
-            action="{{ route('guests.store') }}"
+            action="{{ route('rooms.store') }}"
             method="POST"
             class="mb-4 rounded bg-white px-8 pb-8 pt-6 shadow-md">
             @csrf
             <div class="mb-4">
                 <label
                     class="mb-2 block text-sm font-bold text-gray-700"
-                    for="first_name">
-                    Nama Depan
+                    for="room_number">
+                    Room Number
                 </label>
                 <input
                     class="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
-                    id="first_name"
-                    type="text"
-                    name="first_name"
-                    value="{{ old('first_name') }}"
-                    required />
-            </div>
-
-            <div class="mb-4">
-                <label
-                    class="mb-2 block text-sm font-bold text-gray-700"
-                    for="last_name">
-                    Nama Terakhir
-                </label>
-                <input
-                    class="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
-                    id="last_name"
-                    type="text"
-                    name="last_name"
-                    value="{{ old('last_name') }}"
-                    required />
-            </div>
-
-            <div class="mb-4">
-                <label
-                    class="mb-2 block text-sm font-bold text-gray-700"
-                    for="email">
-                    Email
-                </label>
-                <input
-                    class="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
-                    id="email"
-                    type="email"
-                    name="email"
-                    value="{{ old('email') }}"
-                    required />
-            </div>
-
-            <div class="mb-4">
-                <label
-                    class="mb-2 block text-sm font-bold text-gray-700"
-                    for="phone">
-                    Nomor telpon
-                </label>
-                <input
-                    class="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
-                    id="phone"
+                    id="room_number"
+                    name="room_number"
                     type="number"
-                    name="phone"
-                    value="{{ old('phone') }}"
+                    value="{{ old('room_number') }}"
                     required />
             </div>
             <div class="mb-4">
+                <label for="room_type" class="block text-sm font-medium">Room Type</label>
+                <select name="room_type" id="room_type"
+                    class="mt-1 block w-full rounded-md border border-gray-300 py-1.5">
+                    <option value="">Select Room Type</option>
+                    <option value="single" {{ old('room_type') == 'single' ? 'selected' : '' }}>Single</option>
+                    <option value="double" {{ old('room_type') == 'double' ? 'selected' : '' }}>Double
+                    </option>
+                    <option value="queen" {{ old('room_type') == 'queen' ? 'selected' : '' }}>Queen</option>
+                    <option value="king" {{ old('room_type') == 'king' ? 'selected' : '' }}>King</option>
+                </select>
+                @error('room_type')
+                    <span class="text-sm text-red-500">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="mb-4">
                 <label
                     class="mb-2 block text-sm font-bold text-gray-700"
-                    for="address">
-                Alamat
+                    for="capacity">
+                    Capacity
                 </label>
+                <input
+                    class="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow read-only:bg-slate-200 focus:outline-none"
+                    id="capacity"
+                    type="number"
+                    name="capacity"
+                    value="{{ old('capacity') }}"
+                    readonly />
+            </div>
 
-                <textarea
-                    class="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
-                    id="address"
-                    name="address"
-                    rows="4"
-                    required>
-    {{ old('address') }}</textarea>
+            <div class="mb-4">
+                <label
+                    class="mb-2 block text-sm font-bold text-gray-700"
+                    for="price_per_night">
+                    Price per night
+                </label>
+                <input
+                    class="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow read-only:bg-slate-200 focus:outline-none"
+                    id="price_per_night"
+                    type="price_per_night"
+                    name="price_per_night"
+                    value="{{ old('price_per_night') }}"
+                    readonly />
             </div>
 
             <div class="flex items-center justify-between">
@@ -111,5 +96,8 @@
             </div>
         </form>
     </div>
+
+    <script src="{{ asset('js/autofill.js') }}"></script>
+
 @endsection
 
