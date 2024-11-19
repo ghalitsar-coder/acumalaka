@@ -85,6 +85,25 @@ class RoomController extends Controller
         $room->update($validated);
         return redirect()->route('rooms.index')->with('success', 'Room updated successfully');
     }
+    private function updateReservationsTotalPrice(Room $room)
+{
+    // Step 1: Get all reservations for the updated room
+    $reservations = Reservation::where('room_id', $room->id_room)->get();
+
+    // Step 2: Loop through each reservation and update its total_price
+    foreach ($reservations as $reservation) {
+        // Calculate the number of nights between check-in and check-out dates
+        $checkIn = \Carbon\Carbon::parse($reservation->check_in_date);
+        $checkOut = \Carbon\Carbon::parse($reservation->check_out_date);
+        $nights = $checkIn->diffInDays($checkOut);
+
+        // Step 3: Calculate the new total price based on updated room price
+        $newTotalPrice = $nights * $room->price_per_night;
+
+        // Step 4: Update the reservation's total_price
+        $reservation->update(['total_price' => $newTotalPrice]);
+    }
+}
 
     public function destroy(Room $room)
     {

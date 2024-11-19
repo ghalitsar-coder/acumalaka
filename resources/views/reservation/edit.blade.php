@@ -35,7 +35,7 @@
                     @foreach ($rooms as $room)
                         <option value="{{ $room->id_room }}"
                             {{ $reservation->id_room == $room->id_room ? 'selected' : '' }}>
-                            #{{ $room->id_room }} - {{ $room->room_type ?? 'Missing Type' }}
+                            #{{ $room->room_number }} - {{ $room->room_type ?? 'Missing Type' }}
                             (${{ $room->price_per_night }})
                             @if ($reservation->id_room == $room->id_room)
                                 (Reserved)
@@ -59,7 +59,7 @@
                     <option value="">Select a service</option>
                     @foreach ($services as $service)
                         <option value="{{ $service->id_service }}"
-                            {{ $reservationService->id_service == $service->id_service ? 'selected' : '' }}>
+                            {{ $reservation->id_service == $service->id_service ? 'selected' : '' }}>
                             #{{ $service->service_type }} - ${{ $service->price }}
                         </option>
                     @endforeach

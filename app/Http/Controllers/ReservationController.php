@@ -20,7 +20,7 @@ class ReservationController extends Controller
      */
     public function index()
 {
-        $reservations = Reservation::with('guest', 'room', 'staff', 'services')
+        $reservations = Reservation::with('guest', 'room', 'staff', 'service')
             ->get()
             ->map(function ($reservation) {
                 // Format the check-in and check-out dates
@@ -41,7 +41,7 @@ class ReservationController extends Controller
     {
         $guests = Guest::with('reservations')->get();
         $services = Service::all();
-        $rooms = Room::where('status', 'available')->get();
+        $rooms = Room::all() ;
         $staffs = Staff::all();  // Fetch all staff members
 
         return view('reservation.create', compact('guests', 'rooms', 'staffs','services'));  // Pass data to create view
@@ -60,6 +60,7 @@ class ReservationController extends Controller
         'id_guest' => 'required|exists:guests,id_guest',
         'id_room' => 'required|exists:rooms,id_room',
         'id_staff' => 'required|exists:staff,id_staff',
+        'id_service' => 'required|exists:services,id_service',
         'check_in_date' => 'required|date|after_or_equal:today',  // Ensure check-in date is valid and not in the past
         'check_out_date' => 'required|date|after:check_in_date',  // Ensure check-out date is after check-in date
     ], 
@@ -92,19 +93,14 @@ class ReservationController extends Controller
         'id_room' => $request->id_room,
         'id_guest' => $request->id_guest,
         'id_staff' => $request->id_staff,
+        'id_service' => $request->id_service,
         'check_in_date' => $request->check_in_date,
         'check_out_date' => $request->check_out_date,
         'total_price' => $totalPrice,
     ]);
 
-    ReservationService::create([
-        'id_reservation' => $reservation->id_reservation,
-        'id_service' => $request->id_service,
-        'total_price' => $totalPrice,
-        // 'quantity' => 1,
-    ]); 
+  
 
-    // Redirect to the reservation index page with a success message
     return redirect()->route('reservation.index')->with('success', 'Reservation created successfully!');
 }
 
@@ -129,13 +125,6 @@ class ReservationController extends Controller
     public function edit($id)
     {
         $reservation = Reservation::findOrFail($id);  // Fetch the reservation by ID
-        $reservationService = ReservationService::findOrFail($reservation->id_reservation);  // Fetch the reservation by ID
-        // dd($reservation->all());
-        // $guests = Guest::all();  // Fetch all guests
-        // $rooms = Room::all();    // Fetch all rooms
-        // $staffs = Staff::all();  // Fetch all staff members
-        
-        // return view('reservation.edit', compact('reservation', 'guests', 'rooms', 'staffs'));  // Pass data to edit view
         $guests = Guest::with('reservations')->get();
         $services = Service::all();
         $rooms = Room::where('status', 'available')
@@ -144,7 +133,7 @@ class ReservationController extends Controller
         // $rooms = Room::all();
         $staffs = Staff::all();  // Fetch all staff members
 
-        return view('reservation.edit', compact('reservation','guests', 'rooms', 'staffs','services','reservationService'));  
+        return view('reservation.edit', compact('reservation','guests', 'rooms', 'staffs','services'));  
     }
 
     /**
@@ -173,8 +162,7 @@ class ReservationController extends Controller
     ]);
 
      // Find the reservation by its ID
-     $reservation = Reservation::findOrFail($id);
-     $reservationService = ReservationService::findOrFail($reservation->id_reservation);
+        $reservation = Reservation::findOrFail($id);
 
         // Find the reservation and update it
         $room = Room::find($request->id_room);
@@ -203,17 +191,8 @@ class ReservationController extends Controller
             'check_out_date' => $request->check_out_date,
             'total_price' => $totalPrice,
         ]);
-        // if($request->id_service != $reservationService->id_service) {
-            $reservationService->update([
-            'id_service' => $request->id_service,
-            'id_room' => $request->id_room,
-            'id_staff' => $request->id_staff,
-            'total_price' => $totalPrice,
+        
 
-            // 'quantity' => 1,
-
-        ]);
-    // }
         return redirect()->route('reservation.index')->with('success', 'Reservation updated successfully!');
     }
 
@@ -226,6 +205,7 @@ class ReservationController extends Controller
     public function destroy($id)
     {
         $reservation = Reservation::findOrFail($id);
+        // Room::where('id_room', $reservation->id_room)->update(['status' => 'available']);
         $reservation->delete();
 
         return redirect()->route('reservation.index')->with('success', 'Reservation deleted successfully!');

@@ -104,7 +104,7 @@
                     reservation
                 </a>
             </li>
-            <li>
+            <!-- <li>
                 <a
                     href="{{ route('reservation_services.index') }}"
                     class="flex items-center rounded-md p-2 text-white hover:bg-indigo-600">
@@ -122,7 +122,7 @@
                     </svg>
                     reservation_services
                 </a>
-            </li>
+            </li> -->
             <li>
                 <a
                     href="{{ route('guests.index') }}"

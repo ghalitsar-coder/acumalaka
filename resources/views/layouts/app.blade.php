@@ -11,15 +11,9 @@
 
         <div class="grid grid-cols-[256px,1fr]">
             @include('comp.sidebar')
-            <!-- Main Content Area -->
-
-            <!-- JavaScript to Toggle Sidebar -->
-
-            <!-- Main Content -->
             <main
                 class="max-w-7xl !w-full   mx-auto   sm:px-6 lg:px-8"
             >
-                <!-- Flash Messages -->
                 @if (session()->has('success'))
                     <div
                         class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4"

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mx-auto = px-4 py-8">
+    <div class="= container mx-auto px-4 py-8">
         <button class="rounded-lg bg-indigo-600 px-2.5 py-1.5 font-semibold text-white shadow-sm">
             <a href="{{ route('reservation.create') }}">Add new Reservation</a>
         </button>
@@ -74,10 +74,7 @@
                             </td>
                             <td
                                 class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">
-
-                                @foreach ($reservation->services as $service)
-                                    <span class="font-bold">{{ $service->service_type }}</span> ({{ $service->price }})
-                                @endforeach
+                                {{ $reservation->service->service_type }}
                             </td>
                             <td
                                 class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">
@@ -121,18 +118,18 @@
                                 @endif
                             </td>
                             <td class="flex gap-2 px-6 py-4">
-                                <a
+                                <!-- <a
                                     href="{{ route('reservation.show', $reservation->id_reservation) }}"
                                     class="text-blue-600 hover:text-blue-900">
                                     View
-                                </a>
+                                </a> -->
 
                                 <a
                                     href="{{ route('reservation.edit', $reservation->id_reservation) }}"
                                     class="text-green-600 hover:text-green-900">
                                     Edit
                                 </a>
-                                <form
+                                <!-- <form
                                     action="{{ route('reservation.destroy', $reservation->id_reservation) }}"
                                     method="POST"
                                     class="inline">
@@ -144,7 +141,7 @@
                                         onclick="return confirm('Are you sure?')">
                                         Delete
                                     </button>
-                                </form>
+                                </form> -->
                             </td>
                         </tr>
                     @endforeach

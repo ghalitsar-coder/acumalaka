@@ -3,9 +3,9 @@
 @section('content')
     <div class="mx-auto max-w-2xl">
         <div class="mb-6">
-            <h1 class="text-3xl font-bold">Add New guest</h1>
+            <h1 class="text-3xl font-bold">Add New Service</h1>
             <a
-                href="{{ route('guests.index') }}"
+                href="{{ route('services.index') }}"
                 class="text-blue-500 hover:text-blue-700">
                 Back to List
             </a>
@@ -23,90 +23,59 @@
         @endif
 
         <form
-            action="{{ route('guests.store') }}"
+            action="{{ route('services.store') }}"
             method="POST"
             class="mb-4 rounded bg-white px-8 pb-8 pt-6 shadow-md">
             @csrf
             <div class="mb-4">
+                <label for="service_type" class="block text-sm font-medium">Room Type</label>
+                <select name="service_type" id="service_type"
+                    class="mt-1 block w-full rounded-md border border-gray-300 py-1.5">
+                    <option value="">Select Room Type</option>
+                    <option value="standard" {{ old('service_type') == 'standard' ? 'selected' : '' }}>standard</option>
+                    <option value="comfort" {{ old('service_type') == 'comfort' ? 'selected' : '' }}>comfort
+                    </option>
+                    <option value="luxury" {{ old('service_type') == 'luxury' ? 'selected' : '' }}>luxury</option>
+                </select>
+                @error('service_type')
+                    <span class="text-sm text-red-500">{{ $message }}</span>
+                @enderror
+            </div>
+            <div class="mb-4">
                 <label
                     class="mb-2 block text-sm font-bold text-gray-700"
-                    for="first_name">
-                    Nama Depan
+                    for="description">
+                    Description
                 </label>
                 <input
                     class="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
-                    id="first_name"
+                    id="description"
                     type="text"
-                    name="first_name"
-                    value="{{ old('first_name') }}"
+                    name="description"
+                    value="{{ old('description') }}"
                     required />
             </div>
 
             <div class="mb-4">
                 <label
                     class="mb-2 block text-sm font-bold text-gray-700"
-                    for="last_name">
-                    Nama Terakhir
+                    for="price">
+                    Price
                 </label>
                 <input
                     class="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
-                    id="last_name"
-                    type="text"
-                    name="last_name"
-                    value="{{ old('last_name') }}"
-                    required />
-            </div>
-
-            <div class="mb-4">
-                <label
-                    class="mb-2 block text-sm font-bold text-gray-700"
-                    for="email">
-                    Email
-                </label>
-                <input
-                    class="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
-                    id="email"
-                    type="email"
-                    name="email"
-                    value="{{ old('email') }}"
-                    required />
-            </div>
-
-            <div class="mb-4">
-                <label
-                    class="mb-2 block text-sm font-bold text-gray-700"
-                    for="phone">
-                    Nomor telpon
-                </label>
-                <input
-                    class="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
-                    id="phone"
+                    id="price"
                     type="number"
-                    name="phone"
-                    value="{{ old('phone') }}"
+                    name="price"
+                    value="{{ old('price') }}"
                     required />
-            </div>
-            <div class="mb-4">
-                <label
-                    class="mb-2 block text-sm font-bold text-gray-700"
-                    for="address">
-                Alamat
-                </label>
-
-                <textarea
-                    class="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
-                    id="address"
-                    name="address"
-                    rows="4"
-                    required>
-    {{ old('address') }}</textarea>
             </div>
 
             <div class="flex items-center justify-between">
                 <button
                     class="focus:shadow-outline rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:outline-none"
                     type="submit">
-                    Create guest
+                    Create Service
                 </button>
             </div>
         </form>

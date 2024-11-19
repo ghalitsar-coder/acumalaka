@@ -24,11 +24,6 @@ class Service extends Model
      */
     public function reservations()
     {
-        return $this->belongsToMany(
-            Reservation::class,
-            'reservation_services',
-            'id_service',      // Foreign key on pivot table referring to services table
-            'id_reservation'   // Foreign key on pivot table referring to reservations table
-        );
+        return $this->hasMany(Reservation::class, 'service_id', 'id_service');
     }
 }

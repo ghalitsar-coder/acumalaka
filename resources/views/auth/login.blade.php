@@ -20,7 +20,7 @@
         </div>
     @endif
 
-    <div class="grid place-items-center h-screen bg-green-300">
+    <div class="grid place-items-center h-screen ">
         <div
             class="max-w-sm w-full -translate-y-10 bg-white rounded-lg border border-slate-200/80 p-5"
         >

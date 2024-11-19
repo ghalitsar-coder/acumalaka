@@ -37,9 +37,9 @@ class ServiceController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:100',
+            'service_type' => 'required|in:standard,luxury,comfort',
             'description' => 'nullable|string|max:255',
-            'price' => 'required|decimal',
+            'price' => 'required|numeric:1',
         ]);
 
         Service::create($request->all());
@@ -58,7 +58,23 @@ class ServiceController extends Controller
         $service = Service::findOrFail($id);
         return view('services.show', compact('service'));
     }
+    public function edit($id)
+    {
+        $service = Service::findOrFail($id);
+        return view('services.edit', compact('service'));
+    }
+    public function update(Request $request, Service $service)
+    {
+        $request->validate([
+            'service_type' => 'required|in:standard,luxury,comfort',
+            'description' => 'nullable|string|max:255',
+            'price' => 'required|numeric:1',
+        ]);
 
+        $service->update($request->all());
+
+        return redirect()->route('services.index')->with('success', 'Service created successfully!');
+    }
     /**
      * Remove the specified service from the database.
      *

@@ -19,7 +19,7 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        $payments = Payment::with('reservationService', 'staff')->get();
+        $payments = Payment::with('reservation', 'staff')->get();
         return view('payment.index', compact('payments'));
     }
 
@@ -30,11 +30,14 @@ class PaymentController extends Controller
      */
     public function create()
     {
-        $reservations = ReservationService::whereDoesntHave('payment')->with(['reservation.guest', 'service'])
+    // Fetch reservations that do not have a payment associated with them
+    $reservations = Reservation::whereDoesntHave('payment')
+        ->with(['guest', 'service'])
         ->get();
-        // $reservations = Reservation::with('guest')->get();
-        $staff = Staff::all();
-        return view('payment.create', compact('reservations', 'staff'));
+
+    $staff = Staff::all();
+    
+    return view('payment.create', compact('reservations', 'staff'));
     }
 
     /**
@@ -47,7 +50,7 @@ class PaymentController extends Controller
     {
 
         $request->validate([
-            'id_reservation_service' => 'required|exists:reservation_services,id_reservation_service',
+            'id_reservation' => 'required|exists:reservations,id_reservation',
             'id_staff' => 'required|exists:staff,id_staff',
             // 'amount' => 'required|decimal',
             'payment_date' => 'required|date',
@@ -59,12 +62,11 @@ class PaymentController extends Controller
         try {
             // Your validation code here...
     
-            $reservationService = ReservationService::findOrFail($request->id_reservation_service);
-            $reservation = Reservation::findOrFail($reservationService->id_reservation);
+            $reservation = Reservation::findOrFail($request->id_reservation);
     
             // Create the payment
             Payment::create([
-                'id_reservation_service' => $request->id_reservation_service,
+                'id_reservation' => $request->id_reservation,
                 'id_staff' => $request->id_staff,
                 'amount' => $reservation->total_price,
                 'payment_date' => $request->payment_date,

@@ -62,12 +62,35 @@ class StaffController extends Controller
         return view('staff.show', compact('staff'));
     }
 
+    public function edit($id)
+    {
+        $staff = Staff::findOrFail($id);
+        return view('staff.edit', compact('staff'));
+    }
+    public function update(Request $request, Staff $staff)
+    {
+        $request->validate([
+            'first_name' => 'required|string|max:50',
+            'last_name' => 'required|string|max:50',
+            'position' => 'required|string|max:50',
+            'email' => 'required|string|email|max:100|unique:staff',
+            'phone' => 'required|string|max:20',
+            'hire_date' => 'required|date',
+        ]);
+
+        $staff->update($request->all());
+
+        return redirect()->route('staff.index')->with('success', 'staff created successfully!');
+    }
+
     /**
      * Remove the specified staff member from the database.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+     
     public function destroy($id)
     {
         $staff = Staff::findOrFail($id);

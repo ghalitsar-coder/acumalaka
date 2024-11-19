@@ -3,9 +3,9 @@
 @section('content')
     <div class="mx-auto max-w-2xl">
         <div class="mb-6">
-            <h1 class="text-3xl font-bold">Add New guest</h1>
+            <h1 class="text-3xl font-bold">Add New Room</h1>
             <a
-                href="{{ route('guests.index') }}"
+                href="{{ route('rooms.index') }}"
                 class="text-blue-500 hover:text-blue-700">
                 Back to List
             </a>

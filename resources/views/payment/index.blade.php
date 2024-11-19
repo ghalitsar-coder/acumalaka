@@ -56,14 +56,14 @@
                 @foreach ($payments as $payment)
                     <tr class="border-b border-gray-200 hover:bg-gray-100">
                         <td class="px-6 py-4 text-sm font-medium text-gray-900">
-                        {{ $loop->iteration }}
+                            {{ $loop->iteration }}
                         </td>
                         <td class="px-6 py-4 text-sm text-gray-700">
-                            {{ $payment->reservationService->id_reservation }}
+                            {{ $payment->id_reservation }}
                         </td>
                         <td class="px-6 py-4 text-sm text-gray-700">
-                            {{ $payment->reservationService->reservation->guest->first_name }}
-                            {{ $payment->reservationService->reservation->guest->last_name }}
+                            {{ $payment->reservation->guest->first_name }}
+                            {{ $payment->reservation->guest->last_name }}
                         </td>
                         <td class="px-6 py-4 text-sm text-gray-700">
                             {{ $payment->staff->first_name }}

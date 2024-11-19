@@ -67,18 +67,18 @@
                             {{ $room->status }}
                         </td>
                         <td class="flex gap-2 px-6 py-4">
-                                <a
+                                <!-- <a
                                     href="{{ route('rooms.show', $room->id_room) }}"
                                     class="text-blue-600 hover:text-blue-900">
                                     View
-                                </a>
+                                </a> -->
 
                                 <a
                                     href="{{ route('rooms.edit', $room->id_room) }}"
                                     class="text-green-600 hover:text-green-900">
                                     Edit
                                 </a>
-                                <form
+                                <!-- <form
                                     action="{{ route('rooms.destroy', $room->id_room) }}"
                                     method="POST"
                                     class="inline">
@@ -90,7 +90,7 @@
                                         onclick="return confirm('Are you sure?')">
                                         Delete
                                     </button>
-                                </form>
+                                </form> -->
                             </td>
                     </tr>
                 @endforeach

@@ -30,7 +30,8 @@
             @method('PUT')
             <div class="mb-4">
                 <label for="id_reservation" class="block text-sm font-medium">Select Reservation</label>
-                <select name="id_reservation" id="id_reservation" class="mt-1 block w-full rounded-md border-gray-300">
+                <select name="id_reservation" id="id_reservation"
+                    class="mt-1 block w-full rounded-md border border-gray-300 py-1.5">
                     @foreach ($reservations as $reservation)
                         <option value="{{ $reservation->id_reservation }}"
                             {{ $payment->id_reservation == $reservation->id_reservation ? 'selected' : '' }}>
@@ -44,7 +45,7 @@
             <!-- Staff Select -->
             <div class="mb-4">
                 <label for="id_staff" class="block text-sm font-medium">Select Staff</label>
-                <select name="id_staff" id="id_staff" class="mt-1 block w-full rounded-md border-gray-300">
+                <select name="id_staff" id="id_staff" class="mt-1 block w-full rounded-md border border-gray-300 py-1.5">
                     @foreach ($staff as $s)
                         <option value="{{ $s->id_staff }}"
                             {{ $payment->id_staff == $s->id_staff ? 'selected' : '' }}>
@@ -60,17 +61,16 @@
                     name="payment_date"
                     id="payment_date"
                     value="{{ $payment->payment_date }}"
-                    class="mt-1 block w-full rounded-md border border-gray-300">
+                    class="mt-1 block w-full rounded-md border border-gray-300 py-1.5">
                 @error('payment_date')
                     <span class="text-sm text-red-500">{{ $message }}</span>
                 @enderror
             </div>
 
-         
-
             <div class="mb-4">
                 <label for="payment_method" class="block text-sm font-medium">Payment Method</label>
-                <select name="payment_method" id="payment_method" class="mt-1 block w-full rounded-md border-gray-300">
+                <select name="payment_method" id="payment_method"
+                    class="mt-1 block w-full rounded-md border border-gray-300 py-1.5">
                     <option value="cash" {{ $payment->payment_method == 'cash' ? 'selected' : '' }}>Cash</option>
                     <option value="credit_card" {{ $payment->payment_method == 'credit_card' ? 'selected' : '' }}>Credit
                         Card</option>
@@ -81,7 +81,8 @@
 
             <div class="mb-4">
                 <label for="payment_status" class="block text-sm font-medium">Payment Status</label>
-                <select name="payment_status" id="payment_status" class="mt-1 block w-full rounded-md border-gray-300">
+                <select name="payment_status" id="payment_status"
+                    class="mt-1 block w-full rounded-md border border-gray-300 py-1.5">
                     <option value="pending" {{ $payment->payment_status == 'pending' ? 'selected' : '' }}>Pending</option>
                     <option value="completed" {{ $payment->payment_status == 'completed' ? 'selected' : '' }}>Completed
                     </option>

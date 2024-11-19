@@ -17,6 +17,7 @@ class Reservation extends Model
         'id_guest',
         'id_room',
         'id_staff',
+        'id_service',
         'check_in_date',
         'check_out_date',
         'total_price',
@@ -50,6 +51,11 @@ class Reservation extends Model
     /**
      * Get the payment associated with the reservation.
      */
+
+     public function payment()
+     {
+         return $this->hasOne(Payment::class, 'id_reservation','id_reservation');
+     }
     
 
     /**
@@ -57,14 +63,9 @@ class Reservation extends Model
      */
 
     // In Reservation.php
-    public function services()
+    public function service()
     {
-        return $this->belongsToMany(
-            Service::class,
-            'reservation_services',
-            'id_reservation',  // Foreign key on pivot table referring to reservations table
-            'id_service'       // Foreign key on pivot table referring to services table
-        );
+        return $this->belongsTo(Service::class, 'id_service', 'id_service');
     }
 
 }

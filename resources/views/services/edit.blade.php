@@ -3,9 +3,9 @@
 @section('content')
     <div class="mx-auto max-w-2xl">
         <div class="mb-6">
-            <h1 class="text-3xl font-bold">Edit guest</h1>
+            <h1 class="text-3xl font-bold">Edit service</h1>
             <a
-                href="{{ route('guests.index') }}"
+                href="{{ route('services.index') }}"
                 class="text-blue-500 hover:text-blue-700">
                 Back to List
             </a>
@@ -23,91 +23,62 @@
         @endif
 
         <form
-            action="{{ route('guests.update', $guest->id_guest) }}"
+            action="{{ route('services.update', $service->id_service) }}"
             method="POST"
             class="mb-4 rounded bg-white px-8 pb-8 pt-6 shadow-md">
             @csrf
             @method('PUT')
 
             <div class="mb-4">
+                <label for="service_type" class="block text-sm font-medium">Room Type</label>
+                <select name="service_type" id="service_type"
+                    class="mt-1 block w-full rounded-md border border-gray-300 py-1.5">
+                    <option value="">Select Room Type</option>
+                    <option value="standard" {{ $service->service_type == 'standard' ? 'selected' : '' }}>standard</option>
+                    <option value="comfort" {{ $service->service_type == 'comfort' ? 'selected' : '' }}>comfort
+                    </option>
+                    <option value="luxury" {{ $service->service_type == 'luxury' ? 'selected' : '' }}>luxury</option>
+                </select>
+                @error('service_type')
+                    <span class="text-sm text-red-500">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="mb-4">
                 <label
                     class="mb-2 block text-sm font-bold text-gray-700"
-                    for="first_name">
-                    first_name
+                    for="description">
+                    description
                 </label>
                 <input
                     class="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
-                    id="first_name"
+                    id="description"
                     type="text"
-                    name="first_name"
-                    value="{{ $guest->first_name }}"
+                    name="description"
+                    value="{{ $service->description }}"
                     required />
             </div>
 
             <div class="mb-4">
                 <label
                     class="mb-2 block text-sm font-bold text-gray-700"
-                    for="last_name">
-                    last_name
+                    for="price">
+                    price
                 </label>
                 <input
                     class="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
-                    id="last_name"
+                    id="price"
                     type="text"
-                    name="last_name"
-                    value="{{ $guest->last_name }}"
+                    name="price"
+                    value="{{ $service->price }}"
                     required />
-            </div>
-
-            <div class="mb-4">
-                <label
-                    class="mb-2 block text-sm font-bold text-gray-700"
-                    for="email">
-                    Email
-                </label>
-                <input
-                    class="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
-                    id="email"
-                    type="email"
-                    name="email"
-                    value="{{ $guest->email }}"
-                    required />
-            </div>
-            <div class="mb-4">
-                <label
-                    class="mb-2 block text-sm font-bold text-gray-700"
-                    for="phone">
-                    Phone Number
-                </label>
-                <input
-                    class="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
-                    id="phone"
-                    type="number"
-                    name="phone"
-                    value="{{ $guest->phone }}"
-                    required />
-            </div>
-
-            <div class="mb-4">
-                <label
-                    class="mb-2 block text-sm font-bold text-gray-700"
-                    for="address">
-                    address
-                </label>
-                <textarea
-                    class="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
-                    id="address"
-                    name="address"
-                    rows="4"
-                    required>
-    {{ $guest->address }}</textarea>
             </div>
 
             <div class="flex items-center justify-between">
                 <button
                     class="focus:shadow-outline rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:outline-none"
                     type="submit">
-                    Update guest
+                    Update service
                 </button>
             </div>
         </form>

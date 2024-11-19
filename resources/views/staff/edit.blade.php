@@ -3,9 +3,9 @@
 @section('content')
     <div class="mx-auto max-w-2xl">
         <div class="mb-6">
-            <h1 class="text-3xl font-bold">Edit guest</h1>
+            <h1 class="text-3xl font-bold">Edit staff</h1>
             <a
-                href="{{ route('guests.index') }}"
+                href="{{ route('staff.index') }}"
                 class="text-blue-500 hover:text-blue-700">
                 Back to List
             </a>
@@ -23,7 +23,7 @@
         @endif
 
         <form
-            action="{{ route('guests.update', $guest->id_guest) }}"
+            action="{{ route('staff.update', $staff->id_staff) }}"
             method="POST"
             class="mb-4 rounded bg-white px-8 pb-8 pt-6 shadow-md">
             @csrf
@@ -33,14 +33,14 @@
                 <label
                     class="mb-2 block text-sm font-bold text-gray-700"
                     for="first_name">
-                    first_name
+                    Nama Depan
                 </label>
                 <input
                     class="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
                     id="first_name"
                     type="text"
                     name="first_name"
-                    value="{{ $guest->first_name }}"
+                    value="{{ $staff->first_name }}"
                     required />
             </div>
 
@@ -48,14 +48,14 @@
                 <label
                     class="mb-2 block text-sm font-bold text-gray-700"
                     for="last_name">
-                    last_name
+                    Nama Terakhir
                 </label>
                 <input
                     class="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
                     id="last_name"
                     type="text"
                     name="last_name"
-                    value="{{ $guest->last_name }}"
+                    value="{{ $staff->last_name }}"
                     required />
             </div>
 
@@ -70,39 +70,49 @@
                     id="email"
                     type="email"
                     name="email"
-                    value="{{ $guest->email }}"
+                    value="{{ $staff->email }}"
+                    required />
+            </div>
+
+            <div class="mb-4">
+                <label
+                    class="mb-2 block text-sm font-bold text-gray-700"
+                    for="position">
+                    Posisi
+                </label>
+                <input
+                    class="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
+                    id="position"
+                    type="text"
+                    name="position"
+                    value="{{ $staff->position }}"
                     required />
             </div>
             <div class="mb-4">
                 <label
                     class="mb-2 block text-sm font-bold text-gray-700"
                     for="phone">
-                    Phone Number
+                    Nomor telpon
                 </label>
                 <input
                     class="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
                     id="phone"
                     type="number"
                     name="phone"
-                    value="{{ $guest->phone }}"
+                    value="{{ $staff->phone }}"
                     required />
             </div>
-
             <div class="mb-4">
-                <label
-                    class="mb-2 block text-sm font-bold text-gray-700"
-                    for="address">
-                    address
-                </label>
-                <textarea
-                    class="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
-                    id="address"
-                    name="address"
-                    rows="4"
-                    required>
-    {{ $guest->address }}</textarea>
+                <label for="hire_date" class="block text-sm font-medium">Hire Date</label>
+                <input type="date"
+                    name="hire_date"
+                    id="hire_date"
+                    value="{{ $staff->hire_date }}"
+                    class="mt-1 block w-full rounded-md border border-gray-300">
+                @error('hire_date')
+                    <span class="text-sm text-red-500">{{ $message }}</span>
+                @enderror
             </div>
-
             <div class="flex items-center justify-between">
                 <button
                     class="focus:shadow-outline rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:outline-none"

@@ -23,7 +23,7 @@
         @endif
 
         <form
-            action="{{ route('payments.update', $payment->id) }}"
+            action="{{ route('guests.update', $guest->id_guest) }}"
             method="POST"
             class="mb-4 rounded bg-white px-8 pb-8 pt-6 shadow-md">
             @csrf
@@ -99,8 +99,7 @@
                     id="address"
                     name="address"
                     rows="4"
-                    required>
-    {{ $guest->address }}</textarea>
+                    required>{{ $guest->address }}</textarea>
             </div>
 
             <div class="flex items-center justify-between">

@@ -27,11 +27,11 @@ class LoginController extends Controller
             $user = Auth::user();
             switch ($user->role) {
                 case 'admin':
-                    return redirect()->intended('/admin/dashboard');
+                    return redirect()->intended('/staff');
                 case 'staff':
                     return redirect()->intended('/staff/dashboard');
                 default:
-                    return redirect()->intended('/dashboard');
+                    return redirect()->intended('/hotel');
             }
         }
 
@@ -45,6 +45,6 @@ class LoginController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/');
+        return redirect()->route('login'); 
     }
 }

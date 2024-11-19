@@ -71,11 +71,11 @@
                             {{ $guest->address }}
                         </td>
                         <td class="flex gap-2 px-6 py-4">
-                            <a
+                            <!-- <a
                                 href="{{ route('guests.show', $guest->id_guest) }}"
                                 class="text-blue-600 hover:text-blue-900">
                                 View
-                            </a>
+                            </a> -->
                             
                             <a
                                 href="{{ route('guests.edit', $guest->id_guest) }}"

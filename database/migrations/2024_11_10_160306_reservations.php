@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('reservations', function (Blueprint $table) {
             $table->id('id_reservation');
-            $table->foreignId('id_guest')->constrained('guests', 'id_guest');
-            $table->foreignId('id_room')->constrained('rooms', 'id_room');
-            $table->foreignId('id_staff')->constrained('staff', 'id_staff');
+            $table->foreignId('id_guest')->constrained('guests', 'id_guest')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('id_room')->constrained('rooms', 'id_room')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('id_staff')->constrained('staff', 'id_staff')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('id_service')->constrained('services', 'id_service')->onDelete('cascade')->onUpdate('cascade');
             $table->date('check_in_date');
             $table->date('check_out_date');
             $table->decimal('total_price', 10, 2);
