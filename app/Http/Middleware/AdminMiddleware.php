@@ -12,7 +12,7 @@ class AdminMiddleware
     {
         if (Auth::check() && Auth::user()->role !== 'admin') {
             // Redirect non-admin users to the landing page
-            return redirect()->route('hotel');
+            return redirect()->route('/');
         }
 
         return $next($request);

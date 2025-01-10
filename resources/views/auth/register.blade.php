@@ -22,10 +22,28 @@
     <div class="grid h-screen place-items-center">
         <div
             class="w-full max-w-sm -translate-y-10 rounded-lg border border-slate-200/80 bg-white p-5">
-            <form method="POST" action="{{ route('login') }}">
+            <form method="POST" action="{{ route('register') }}">
                 @csrf
 
                 <!-- Email -->
+                <div class="mb-4">
+                    <label
+                        for="email"
+                        class="block text-sm font-medium text-gray-700">
+                        Name
+                    </label>
+                    <input
+                        id="name"
+                        type="text"
+                        name="name"
+                        value="{{ old('name') }}"
+                        required
+                        autofocus
+                        class="mt-1 block w-full rounded-sm border-gray-300 py-1.5 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
+                </div>
+
+                <!-- Password -->
+
                 <div class="mb-4">
                     <label
                         for="email"
@@ -42,7 +60,6 @@
                         class="mt-1 block w-full rounded-sm border-gray-300 py-1.5 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
                 </div>
 
-                <!-- Password -->
                 <div class="mb-4">
                     <label
                         for="password"
@@ -57,32 +74,42 @@
                         class="mt-1 block w-full rounded-sm border-gray-300 py-1.5 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
                 </div>
 
-                <!-- Remember Me -->
+                <!-- Password -->
                 <div class="mb-4">
-                    <label for="remember_me" class="inline-flex items-center">
-                        <input
-                            id="remember_me"
-                            type="checkbox"
-                            name="remember"
-                            class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
-                        <span class="ml-2 text-sm text-gray-600">
-                            Remember me
-                        </span>
+                    <label
+                        for="password_confirmation"
+                        class="block text-sm font-medium text-gray-700">
+                        Password Confirmation
                     </label>
+                    <input
+                        id="password_confirmation"
+                        type="password"
+                        name="password_confirmation"
+                        required
+                        class="mt-1 block w-full rounded-sm border-gray-300 py-1.5 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
                 </div>
 
+                <label for="role">Role:</label>
+                <select name="role" id="role">
+                    <option value="guest">Guest</option>
+                    <option value="staff">Staff</option>
+                </select><br>
+
+                <!-- Remember Me -->
+              
+
                 <div class="flex items-center space-x-1.5 my-3">
-                    <h3> Beluim punya akun ?</h3> <span class="text-blue-800/80"> <a href="/register">Sign up</a></span>
+                    <h3> Sudah punya akun ?</h3> <span class="text-blue-800/80"> <a href="/login">Sign in</a></span>
                 </div>
+
                 <div class="flex items-center justify-end">
                     <button
                         type="submit"
                         class="focus:shadow-outline w-full rounded bg-indigo-600 px-4 py-2 font-bold text-white hover:bg-indigo-700 focus:outline-none">
-                        Sign in
+                        Sign up
                     </button>
                 </div>
             </form>
         </div>
     </div>
 @endsection
-
