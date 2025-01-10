@@ -18,7 +18,7 @@
                                 href="/"
                                 class="text-xl font-bold text-gray-800"
                             >
-                                Hotel Appss
+                                Hotel Appsssssss
                             </a>
                         </div>
                         <!-- <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
