@@ -31,7 +31,7 @@ class LoginController extends Controller
                 case 'staff':
                     return redirect()->intended('/staff/dashboard');
                 default:
-                    return redirect()->intended('/hotel');
+                    return redirect()->intended('/');
             }
         }
 
