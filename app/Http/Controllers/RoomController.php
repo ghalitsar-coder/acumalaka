@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Room;
+use App\Models\Service;
+use App\Models\Reservation;
 use Illuminate\Http\Request;
 
 
@@ -14,6 +16,90 @@ class RoomController extends Controller
         $rooms = Room::all();
         return view('rooms.index', compact('rooms'));
     }
+
+   public function landing()
+{
+    $roomTypes = ['single', 'double', 'queen', 'king'];
+
+    // Query untuk mendapatkan room_type yang ada di tabel rooms
+    $rooms = \DB::table('rooms')
+        ->select('room_type', \DB::raw('MIN(image) as image'))
+        ->whereIn('room_type', $roomTypes)
+        ->groupBy('room_type')
+        ->get();
+
+    // Filter hanya room_type yang memiliki data
+    $filteredRooms = $rooms->filter(function ($room) use ($roomTypes) {
+        return in_array($room->room_type, $roomTypes);
+    });
+    // $rooms = Room::select('room_type', 'image')->distinct()->get();
+    // Kirim data ke view
+    return view('landing.index', ['rooms' => $filteredRooms]);
+}
+
+public function roomDetails($room_type)
+{
+    // Fetch rooms of the selected type
+    $rooms = Room::where('room_type', $room_type)
+                 ->where('status', 'available')
+                 ->get();
+
+    return view('rooms.details', compact('rooms', 'room_type'));
+}
+
+public function showRoomForm(Request $request, $room_type)
+{
+    $guest = auth()->user()->guest; // Assuming `guest()` is a hasOne or belongsTo relationship
+
+    // Now, you can access the id_guest from the $guest object
+    if ($guest) {
+        $id_guest = $guest->id_guest;
+        // Use $id_guest as needed in your code
+    } else {
+        // Handle the case where no guest is associated with the user
+        return response()->json(['error' => 'Guest not found'], 404);
+    }
+
+    $rooms = Room::where('room_type', $room_type)->get(); // Fetch rooms of this type
+    $services = Service::all(); // Fetch all services
+    $hasPendingReservation = Reservation::where('id_guest', $id_guest)
+    ->whereNull('check_out_date')
+    ->exists(); 
+    // Check if user has pending reservations
+    return view('rooms.details', compact('room_type', 'rooms', 'services', 'hasPendingReservation'));
+}
+
+public function reserveRoom(Request $request)
+{
+    $request->validate([
+        'id_room' => 'required|exists:rooms,id',
+        'services' => 'array',
+        'services.*' => 'exists:services,id',
+    ]);
+
+    $hasPendingReservation = Reservation::where('id_guest', auth()->id())
+        ->whereNull('check_out_date')
+        ->exists();
+
+    if ($hasPendingReservation) {
+        return back()->withErrors(['error' => 'You already have an ongoing reservation. Please check out before reserving a new room.']);
+    }
+
+    // Create a new reservation
+    $reservation = Reservation::create([
+        'user_id' => auth()->id(),
+        'id_room' => $request->room_id,
+        'status' => 'reserved',
+    ]);
+
+    // Attach selected services
+    if ($request->has('services')) {
+        $reservation->services()->sync($request->services);
+    }
+
+    return redirect()->back()->with('success', 'Room reserved successfully!');
+}
+
 
     public function create()
     {
