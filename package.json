@@ -19,6 +19,7 @@
     },
     "dependencies": {
         "@preline/overlay": "^2.5.0",
+        "flatpickr": "^4.6.13",
         "preline": "^2.5.1"
     }
 }
