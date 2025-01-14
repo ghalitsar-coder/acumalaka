@@ -1,35 +1,88 @@
  @extends('layouts.hotel')
 
  @section('content')
-     <nav class="flex items-center justify-between bg-white px-6 py-4 shadow-md">
+    <div class="bg-[url('C:\laragon\www\UAS-PEMMWEB\resources\views\landing\background.webp')] bg-cover bg-no-repeat w-[full] h-[640px]">
+        <nav class="ml-[110px] mr-[110px] flex items-center justify-between border-b-4 border-black px-6 py-4">
+            <div>
+                <a href="{{ route('landing') }}" class="text-xl font-bold">MyApp</a>
+            </div>
+            <div>
+                @auth
+                    {{-- Jika user sudah login, tampilkan tombol Logout --}}
+                    <form action="{{ route('logout') }}" method="POST" class="inline">
+                    @csrf
+                        <button type="submit" class="rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600">
+                            Logout</button>
+                    </form>
+                @else
+                    {{-- Jika user belum login, tampilkan tombol Login/Register --}}
+                    <a href="{{ route('login') }}"
+                    class="rounded-[25px] border-2 border-white bg-transparent px-8 py-2 font-bold text-white hover:bg-black hover:bg-opacity-10 focus:outline-none focus:ring focus:ring-white">
+                        Login</a>
+                    <a href="{{ route('register.form') }}"
+                    class="rounded-[25px] border-2 border-blue-500 bg-blue-500 px-8 py-2 font-bold text-white hover:bg-blue-600  hover:border-blue-600 focus:outline-none focus:ring focus:ring-blue-300">
+                        Daftar</a>
+                @endauth
+            </div>
+        </nav>
+        <!-- Header -->
+        <header class="text-center">
+            <div class="container mt-[60px]">
+               <h1 class="text-7xl font-serif text-white">
+                Welcome to Our Website</h1>
+               <p class="mt-[20px] text-3xl font-serif text-white">
+                Discover amazing features and great services.</p>
+            </div>
+        </header>
 
-         <div>
-             <a href="{{ route('landing') }}" class="text-xl font-bold">MyApp</a>
-         </div>
-         <div>
-             @auth
-                 {{-- Jika user sudah login, tampilkan tombol Logout --}}
-                 <form action="{{ route('logout') }}" method="POST" class="inline">
-                     @csrf
-                     <button type="submit" class="rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600">Logout</button>
-                 </form>
-             @else
-                 {{-- Jika user belum login, tampilkan tombol Login/Register --}}
-                 <a href="{{ route('login') }}" class="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600">Login</a>
-                 <a href="{{ route('register.form') }}"
-                     class="rounded bg-green-500 px-4 py-2 text-white hover:bg-green-600">Register</a>
-             @endauth
-         </div>
-     </nav>
-     <!-- Hero Section -->
-     <header class="bg-blue-500 text-white">
-         <div class="container mx-auto p-8 text-center">
-             <h1 class="text-4xl font-bold">Welcome to Our Website</h1>
-             <p class="mt-4 text-lg">Discover amazing features and great services.</p>
+        <!-- Button Action -->
+        <div class="mt-[60px] container text-center">
+            <a href="" class="py-1 inline-block h-[30px] w-[150px] rounded-[25px] bg-blue-900 text-center text-sm text-white hover:bg-blue-950 focus:outline-none focus:ring focus:ring-blue-900">
+                about us</a>
+            <a href="" class="py-1 inline-block h-[30px] w-[150px] rounded-[25px] bg-blue-900 text-center text-sm text-white hover:bg-blue-950 focus:outline-none focus:ring focus:ring-blue-900">
+                room list</a>
+            <a href="" class="py-1 inline-block h-[30px] w-[150px] rounded-[25px] bg-blue-900 text-center text-sm text-white hover:bg-blue-950 focus:outline-none focus:ring focus:ring-blue-900">
+                payment</a>
+            <a href="" class="py-1 inline-block h-[30px] w-[150px] rounded-[25px] bg-blue-900 text-center text-sm text-white hover:bg-blue-950 focus:outline-none focus:ring focus:ring-blue-900">
+                your booking</a>
+        </div>
 
-         </div>
-     </header>
+        <!-- Label -->
+        <form action="#" class="mt-[80px]">
+            <div class="flex items-center">
+                <a class="ml-[140px] block text-base font-serif text-white">
+                    Pilih Kamar :</a>
+                <a class="ml-[210px] block text-base font-serif text-white">
+                    Check in Date :</a>
+                <a class="ml-[60px] block text-base font-serif text-white">
+                    Check out Date :</a>
+                <a class="ml-[50px] block text-base font-serif text-white">
+                    Guest(s) :</a>
+            </div>
 
+            <!-- Reseration Nav. -->
+            <div class="container h-[80px] w-[1150px] place-self-center rounded-[35px] bg-[#D9D9D9]">
+                <div class="flex items-center px-1 py-1">
+                    <select name="id_room" id="id_room"
+                    class="h-[72px] w-[320px] rounded-s-full border-4 border-black px-[20px]">
+                        <option value="">
+                            Select a room</option>
+                    </select>
+                    <input type="Date" name="check-in" id="check-in"
+                    class="h-[72px] w-[160px] border-4 border-black px-[15px]">
+                    <input type="Date" name="check-out" id="check-out"
+                    class="h-[72px] w-[160px] border-4 border-black px-[15px]">
+                    <input name="person" id="person" value="1 Orang"
+                    class="h-[72px] w-[320px] rounded-e-full border-4 border-black px-[20px]">
+
+                    <button type="submit" class="font-serif text-white font-bold text-lg mx-1 h-[72px] w-[200px] rounded-[35px] border-4 border-black bg-[#FC7447] hover:bg-[#FC6336]">
+                        Reservasion
+                    </button>
+                </div>
+            </div>
+        </form>
+
+    </div>
      <!-- Features Section -->
      <section class="container mx-auto p-8">
          <h2 class="mb-6 text-center text-2xl font-bold">Our Features</h2>
@@ -67,8 +120,6 @@
              @endforelse
          </div>
      </div>
-
-     <a href="{{ route('dashboard-apa-aja-dokter') }}"> kita mau kemana dashboard dokter </a>
 
      <!-- Footer -->
      <footer class="bg-gray-800 p-4 text-center text-white">
