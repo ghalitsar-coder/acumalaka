@@ -19,24 +19,28 @@
         </div>
     @endif
 
-    <div class="grid h-screen place-self-center">
+    <div class="grid bg-[url('C:\laragon\www\UAS-PEMMWEB\resources\views\landing\background.png')] bg-cover bg-no-repeat w-full h-[640px]">
+        
+        <a href="{{ route('landing') }}" class="w-[200px] h-[60px] bg-blue-500 bg-opacity-50 place-self-center rounded-[50px]">
+            <p class="font-serif text-5xl text-white place-self-center">MyApp</p>
+        </a>
+    
         <div
-            class="w-[700px] h-[450px] rounded-lg border border-slate-200/80 bg-white p-5">
+            class="w-[700px] h-[450px] rounded-[35px] border border-slate-200/80 bg-white bg-opacity-75 mx-auto">
             <form method="POST" action="{{ route('login') }}">
                 @csrf
 
-                <div class="place-self-center items-center border-b-2 border-black w-[320px] h-[55px]">
+                <div class="place-self-center items-center border-b-2 border-black w-[320px] h-[55px] mt-[40px]">
                     <h2 class="font-serif text-5xl text-center">
                         Login/Daftar
                     </h2>
                 </div>
 
-                <!-- Email -->
-                <div class="mb-[10px] w-[510px] h-[75px] place-self-center mt-[30px]">
+                <div class="w-[510px] h-[75px] place-self-center mt-[20px]">
                     <div class="place-self-center">
                         <label
                             for="email"
-                            class="block font-serif text-gray-700 text-xl   ">
+                            class="block font-serif text-gray-700 text-xl">
                             Username
                         </label>
                         <input
@@ -46,27 +50,36 @@
                             value="{{ old('email') }}"
                             required
                             autofocus
-                            class="mt-[10px] w-[500px] h-[45px]  mx-[5px] rounded-full"/>
+                            class="mt-[5px] w-[500px] h-[45px]  mx-[5px] rounded-full border-2 px-4"/>
+                    </div>
+                </div>
+                
+                <div class="w-[510px] h-[75px] place-self-center mt-[10px]">
+                    <div class="place-self-center">
+                        <label
+                            for="password"
+                            class="block font-serif text-gray-700 text-xl   ">
+                            Password
+                        </label>
+                        <input
+                            id="password"
+                            type="password"
+                            name="password"
+                            required
+                            class="mt-[5px] w-[500px] h-[45px]  mx-[5px] rounded-full border-2 px-4"/>
                     </div>
                 </div>
 
-                <!-- Password -->
-                <div class="mb-4">
-                    <label
-                        for="password"
-                        class="block text-sm font-medium text-gray-700">
-                        Password
-                    </label>
-                    <input
-                        id="password"
-                        type="password"
-                        name="password"
-                        required
-                        class="mt-1 block w-full rounded-sm border-gray-300 py-1.5 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
+                <div class="place-self-center mt-[20px]">
+                    <button
+                        type="submit"
+                        class="w-[250px] h-[40px] font-serif text-xl bg-[#FC7447] hover:bg-[#FC6336] rounded-full border-black">
+                        Sign in
+                    </button>
                 </div>
 
                 <!-- Remember Me -->
-                <div class="mb-4">
+                <!-- <div class="mb-4">
                     <label for="remember_me" class="inline-flex items-center">
                         <input
                             id="remember_me"
@@ -77,17 +90,19 @@
                             Remember me
                         </span>
                     </label>
+                </div> -->
+
+                <div class="flex place-self-center mt-[20px]">
+                    <a class="w-[80px] h-[2px] bg-black place-self-center"></a>
+                    <p class="font-serif text-sm mx-2">Tidak Punya Akun ?</p>
+                    <a class="w-[80px] h-[2px] bg-black place-self-center"></a>
                 </div>
 
-                <div class="flex items-center space-x-1.5 my-3">
-                    <h3> Beluim punya akun ?</h3> <span class="text-blue-800/80"> <a href="/register">Sign up</a></span>
-                </div>
-                <div class="flex items-center justify-end">
-                    <button
-                        type="submit"
-                        class="focus:shadow-outline w-full rounded bg-indigo-600 px-4 py-2 font-bold text-white hover:bg-indigo-700 focus:outline-none">
-                        Sign in
-                    </button>
+                <div class="place-self-center">
+                    <p class="w-[250px] h-[40px] text-center font-serif">
+                        Ayo Buat Akun MyApplication,
+                        Dengan <a href="/register" class="text-blue-500">Daftar</a> Disini.
+                    </p>
                 </div>
             </form>
         </div>
