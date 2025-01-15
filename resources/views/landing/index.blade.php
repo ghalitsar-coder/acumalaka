@@ -2,26 +2,38 @@
 
  @section('content')
     <div class="bg-[url('C:\laragon\www\UAS-PEMMWEB\resources\views\landing\background.png')] bg-cover bg-no-repeat w-full h-[640px]">
-        <nav class="ml-[110px] mr-[110px] flex items-center justify-between border-b-4 border-black px-6 py-4">
-            <div>
+        <nav class="w-[1200px] h-[55px] flex place-self-center justify-between border-b-4 border-black">
+            <div class="ml-[20px] place-self-center">
                 <a href="{{ route('landing') }}" class="text-xl font-bold text-white">MyApp</a>
             </div>
-            <div>
+            <div class="mr-[20px] place-self-center">
                 @auth
                     {{-- Jika user sudah login, tampilkan tombol Logout --}}
-                    <form action="{{ route('logout') }}" method="POST" class="inline">
-                    @csrf
-                        <button type="submit" class="rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600">
-                            Logout</button>
-                    </form>
+                    <div class="text-white font-serif flex">
+                        <div class="mx-1">
+                            <form action="{{ route('logout') }}" method="POST" class="">
+                            @csrf
+                                <button type="submit" class="w-[70px] rounded-full border-2 border-red-500 bg-red-500 bg-opacity-20 text-white hover:bg-opacity-50">
+                                    Logout</button>
+                            </form>
+                        </div>
+
+                        <div class="w-[200px] mx-1 bg-blue-500 bg-opacity-20 rounded-full border-2 border-blue-500 text-center hover:bg-opacity-50">
+                            <a href="#" class ="">
+                                Nama yg login
+                            </a>
+                        </div>
+                    </div>
                 @else
                     {{-- Jika user belum login, tampilkan tombol Login/Register --}}
-                    <a href="{{ route('login') }}"
-                    class="rounded-[25px] border-2 border-white bg-transparent px-8 py-2 font-bold text-white hover:bg-black hover:bg-opacity-10 focus:outline-none focus:ring focus:ring-white">
-                        Login</a>
-                    <a href="{{ route('register.form') }}"
-                    class="rounded-[25px] border-2 border-blue-500 bg-blue-500 px-8 py-2 font-bold text-white hover:bg-blue-600  hover:border-blue-600 focus:outline-none focus:ring focus:ring-blue-300">
-                        Daftar</a>
+                    <div class="text-white font-serif flex">
+                        <a href="{{ route('login') }}"
+                        class="w-[100px] mx-1 rounded-full border-2 border-gray-500 bg-gray-500 bg-opacity-20 text-center text-white hover:bg-opacity-50">
+                            Login</a>
+                        <a href="{{ route('register.form') }}"
+                        class="w-[100px] mx-1 bg-blue-500 rounded-full border-2 border-blue-500 text-center hover:bg-blue-600 hover:border-blue-600">
+                            Daftar</a>
+                    </div>
                 @endauth
             </div>
         </nav>
