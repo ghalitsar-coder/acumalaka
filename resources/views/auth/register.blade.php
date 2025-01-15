@@ -19,107 +19,135 @@
         </div>
     @endif
 
-    <div class="grid h-screen place-items-center">
+    <div class="grid min-h-screen place-items-center bg-gray-100 p-6">
         <div
-            class="w-full max-w-sm -translate-y-10 rounded-lg border border-slate-200/80 bg-white p-5">
+        class="w-full max-w-2xl rounded-lg border border-gray-300 bg-white p-6 shadow-md">
             <form method="POST" action="{{ route('register') }}">
                 @csrf
 
+                <div class="place-self-center items-center border-b-2 border-black w-[400px] h-[55px]">
+                    <h2 class="font-serif text-5xl text-center">
+                        Register Account
+                    </h2>
+                </div>
+
+                <!-- Name -->
+                <div class="mb-[10px] w-[510px] h-[75px] place-self-center mt-[30px]">
+                    <div class="place-self-center">
+                        <label
+                            for="name"
+                            class="block font-serif text-gray-700 text-xl   ">
+                            Name
+                        </label>
+                        <input
+                            id="email"
+                            type="email"
+                            name="email"
+                            value="{{ old('name') }}"
+                            required
+                            autofocus
+                            class="mt-[5px] w-[500px] h-[45px]  mx-[5px] rounded-full border-2 px-4"/>
+                    </div>
+                </div>
+
                 <!-- Email -->
-                <div class="mb-4">
-                    <label
-                        for="email"
-                        class="block text-sm font-medium text-gray-700">
-                        Name
-                    </label>
-                    <input
-                        id="name"
-                        type="text"
-                        name="name"
-                        value="{{ old('name') }}"
-                        required
-                        autofocus
-                        class="mt-1 block w-full rounded-sm border-gray-300 py-1.5 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
+                <div class="mb-[10px] w-[510px] h-[75px] place-self-center mt-[30px]">
+                    <div class="place-self-center">
+                        <label
+                            for="email"
+                            class="block font-serif text-gray-700 text-xl   ">
+                            Email
+                        </label>
+                        <input
+                            id="email"
+                            type="email"
+                            name="email"
+                            value="{{ old('name') }}"
+                            required
+                            autofocus
+                            class="mt-[5px] w-[500px] h-[45px]  mx-[5px] rounded-full border-2 px-4"/>
+                    </div>
                 </div>
 
                 <!-- Password -->
-
-                <div class="mb-4">
-                    <label
-                        for="email"
-                        class="block text-sm font-medium text-gray-700">
-                        Email Address
-                    </label>
-                    <input
-                        id="email"
-                        type="email"
-                        name="email"
-                        value="{{ old('email') }}"
-                        required
-                        autofocus
-                        class="mt-1 block w-full rounded-sm border-gray-300 py-1.5 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
+                <div class="mb-[10px] w-[510px] h-[75px] place-self-center mt-[30px]">
+                    <div class="place-self-center">
+                        <label
+                            for="password"
+                            class="block font-serif text-gray-700 text-xl   ">
+                            Password
+                        </label>
+                        <input
+                            id="password"
+                            type="password"
+                            name="password"
+                            value="{{ old('password') }}"
+                            required
+                            autofocus
+                            class="mt-[5px] w-[500px] h-[45px]  mx-[5px] rounded-full border-2 px-4"/>
+                    </div>
                 </div>
 
-                <div class="mb-4">
-                    <label
-                        for="password"
-                        class="block text-sm font-medium text-gray-700">
-                        Password
-                    </label>
-                    <input
-                        id="password"
-                        type="password"
-                        name="password"
-                        required
-                        class="mt-1 block w-full rounded-sm border-gray-300 py-1.5 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
+                <!-- Password Confirmation -->
+                <div class="mb-[10px] w-[510px] h-[75px] place-self-center mt-[30px]">
+                    <div class="place-self-center">
+                        <label
+                            for="password_confirmation"
+                            class="block font-serif text-gray-700 text-xl   ">
+                            Password Confirmation
+                        </label>
+                        <input
+                            id="password_confirmation"
+                            type="password_confirmation"
+                            name="password_confirmation"
+                            value="{{ old('password_confirmation') }}"
+                            required
+                            autofocus
+                            class="mt-[5px] w-[500px] h-[45px]  mx-[5px] rounded-full border-2 px-4"/>
+                    </div>
                 </div>
 
-                <!-- Password -->
-                <div class="mb-4">
-                    <label
-                        for="password_confirmation"
-                        class="block text-sm font-medium text-gray-700">
-                        Password Confirmation
-                    </label>
-                    <input
-                        id="password_confirmation"
-                        type="password"
-                        name="password_confirmation"
-                        required
-                        class="mt-1 block w-full rounded-sm border-gray-300 py-1.5 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
+                <div class="mb-[10px] w-[510px] h-[75px] place-self-center mt-[30px]">
+                    <div class="place-self-center">
+                        <label
+                            for="phone"
+                            class="block font-serif text-gray-700 text-xl   ">
+                            Phone
+                        </label>
+                        <input
+                            id="phone"
+                            type="text"
+                            name="phone"
+                            value="{{ old('phone') }}"
+                            required
+                            autofocus
+                            class="mt-[5px] w-[500px] h-[45px]  mx-[5px] rounded-full border-2 px-4"/>
+                    </div>
                 </div>
 
-                <div class="mb-4">
-                    <label for="phone" class="block text-sm font-medium text-gray-700">
-                        Phone
-                    </label>
-                    <input
-                        id="phone"
-                        type="text"
-                        name="phone"
-                        value="{{ old('phone') }}"
-                        required
-                        class="mt-1 block w-full rounded-sm border-gray-300 py-1.5 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
+                <div class="mb-[10px] w-[510px] h-[75px] place-self-center mt-[30px]">
+                    <div class="place-self-center">
+                        <label
+                            for="address"
+                            class="block font-serif text-gray-700 text-xl   ">
+                            Address
+                        </label>
+                        <input
+                            id="address"
+                            type="text"
+                            name="address"
+                            value="{{ old('address') }}"
+                            required
+                            autofocus
+                            class="mt-[5px] w-[500px] h-[45px]  mx-[5px] rounded-full border-2 px-4"/>
+                    </div>
                 </div>
 
-                <div class="mb-4">
-                    <label for="address" class="block text-sm font-medium text-gray-700">
-                        Address
-                    </label>
-                    <textarea
-                        id="address"
-                        type="text"
-                        name="address"
-                        value="{{ old('address') }}"
-                        class="mt-1 block w-full rounded-sm border-gray-300 py-1.5 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                    </textarea>
-                </div>
-
-                <label for="role">Role:</label>
+                <!-- <label for="role">Role:</label>
                 <select name="role" id="role">
                     <option value="guest">Guest</option>
                     <option value="staff">Staff</option>
-                </select><br>
+                </select><br> -->
 
                 <!-- Remember Me -->
 
