@@ -19,27 +19,35 @@
         </div>
     @endif
 
-    <div class="grid h-screen place-items-center">
+    <div class="grid h-screen place-self-center">
         <div
-            class="w-full max-w-sm -translate-y-10 rounded-lg border border-slate-200/80 bg-white p-5">
+            class="w-[700px] h-[450px] rounded-lg border border-slate-200/80 bg-white p-5">
             <form method="POST" action="{{ route('login') }}">
                 @csrf
 
+                <div class="place-self-center items-center border-b-2 border-black w-[320px] h-[55px]">
+                    <h2 class="font-serif text-5xl text-center">
+                        Login/Daftar
+                    </h2>
+                </div>
+
                 <!-- Email -->
-                <div class="mb-4">
-                    <label
-                        for="email"
-                        class="block text-sm font-medium text-gray-700">
-                        Email Address
-                    </label>
-                    <input
-                        id="email"
-                        type="email"
-                        name="email"
-                        value="{{ old('email') }}"
-                        required
-                        autofocus
-                        class="mt-1 block w-full rounded-sm border-gray-300 py-1.5 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
+                <div class="mb-[10px] w-[510px] h-[75px] place-self-center mt-[30px]">
+                    <div class="place-self-center">
+                        <label
+                            for="email"
+                            class="block font-serif text-gray-700 text-xl   ">
+                            Username
+                        </label>
+                        <input
+                            id="email"
+                            type="email"
+                            name="email"
+                            value="{{ old('email') }}"
+                            required
+                            autofocus
+                            class="mt-[10px] w-[500px] h-[45px]  mx-[5px] rounded-full"/>
+                    </div>
                 </div>
 
                 <!-- Password -->
