@@ -40,9 +40,9 @@
                             Name
                         </label>
                         <input
-                            id="email"
-                            type="email"
-                            name="email"
+                            id="name"
+                            type="text"
+                            name="name"
                             value="{{ old('name') }}"
                             required
                             autofocus
@@ -143,11 +143,11 @@
                     </div>
                 </div>
 
-                <!-- <label for="role">Role:</label>
+                <label for="role">Role:</label>
                 <select name="role" id="role">
                     <option value="guest">Guest</option>
                     <option value="staff">Staff</option>
-                </select><br> -->
+                </select><br>
 
                 <!-- Remember Me -->
 

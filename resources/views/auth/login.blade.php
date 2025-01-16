@@ -46,7 +46,7 @@
                             value="{{ old('email') }}"
                             required
                             autofocus
-                            class="mt-[10px] w-[500px] h-[45px]  mx-[5px] rounded-full"/>
+                            class="mt-[5px] w-[500px] h-[45px]  mx-[5px] rounded-full border-2"/>
                     </div>
                 </div>
 
