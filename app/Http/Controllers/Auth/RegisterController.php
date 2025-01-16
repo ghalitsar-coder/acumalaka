@@ -23,7 +23,7 @@ class RegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
-            'role' => 'required|in:guest,staff',
+            // 'role' => 'required guest',
         ]);
     
         // Redirect back with errors if validation fails
@@ -36,10 +36,9 @@ class RegisterController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => $request->role,
+            'role' => 'guest',
         ]);
         // If the role is `guest`, create an entry in the `guests` table
-        if ($request->role === 'guest') {
         
 
             Guest::create([
@@ -50,7 +49,6 @@ class RegisterController extends Controller
                 'phone' =>  $request->phone, // Optional; add this to the form if needed
                 'address' =>  $request->address, // Optional; add this to the form if needed
             ]);
-        }
     
         // Redirect to login with a success message
         return redirect()->route('login')->with('success', 'Registration successful! Please log in.');

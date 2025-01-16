@@ -59,7 +59,7 @@
                  <a href="{{ url('/rooms/' . $room->room_type) }}"
                      class="block rounded border p-4 shadow transition hover:shadow-lg">
                      <img
-                         src="{{ $room->image ?? 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aG90ZWx8ZW58MHx8MHx8&ixlib=rb-1.2.1&q=80&w=400' }}"
+                         src="{{'https://picsum.photos/seed/picsum/200/300' }}"
                          alt="{{ $room->room_type }} room"
                          class="h-48 w-full rounded object-cover" />
                      <h2 class="mt-2 text-xl font-bold capitalize">
