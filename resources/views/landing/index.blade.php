@@ -112,6 +112,42 @@
                     </p>
                 </div>
             </div>
+            <!-- Facility 4 -->
+            <div class="flex flex-col items-center md:flex-row-reverse md:space-x-reverse md:space-x-6">
+                <div class="md:w-1/2">
+                    <img src="https://picsum.photos/seed/picsum/200/300" alt="Spa Facility" class="w-full max-w-xs max-h-48 mx-auto rounded-lg object-cover">
+                </div>
+                <div class="mt-4 md:mt-0 md:w-1/2">
+                    <h3 class="text-xl font-bold">Restaurant</h3>
+                    <p class="mt-4 text-gray-600">
+                        Indulge in our luxurious spa services that offer relaxation and rejuvenation for your mind and body.
+                    </p>
+                </div>
+            </div>
+            <!-- Facility 5 -->
+            <div class="flex flex-col items-center md:flex-row md:space-x-6">
+                <div class="md:w-1/2">
+                    <img src="https://picsum.photos/seed/picsum/200/300" alt="Pool Facility" class="w-full max-w-xs max-h-48 mx-auto rounded-lg object-cover">
+                </div>
+                <div class="mt-4 md:mt-0 md:w-1/2">
+                    <h3 class="text-xl font-bold">Lounge Bar</h3>
+                    <p class="mt-4 text-gray-600">
+                        Enjoy our outdoor pool with breathtaking views, perfect for relaxation or family fun.
+                    </p>
+                </div>
+            </div>
+            <!-- Facility 4 -->
+            <div class="flex flex-col items-center md:flex-row-reverse md:space-x-reverse md:space-x-6">
+                <div class="md:w-1/2">
+                    <img src="https://picsum.photos/seed/picsum/200/300" alt="Spa Facility" class="w-full max-w-xs max-h-48 mx-auto rounded-lg object-cover">
+                </div>
+                <div class="mt-4 md:mt-0 md:w-1/2">
+                    <h3 class="text-xl font-bold">Playground</h3>
+                    <p class="mt-4 text-gray-600">
+                        Indulge in our luxurious spa services that offer relaxation and rejuvenation for your mind and body.
+                    </p>
+                </div>
+            </div>
         </div>
     </section>
 
