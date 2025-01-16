@@ -29,8 +29,8 @@
      <!-- Hero Section -->
      <header class="bg-blue-500 text-white">
          <div class="container mx-auto p-8 text-center">
-             <h1 class="text-4xl font-bold">Welcome to Our Website</h1>
-             <p class="mt-4 text-lg">Discover amazing features and great services.</p>
+             <h1 class="text-4xl font-bold">Welcome to Our Hottel</h1>
+             <p class="mt-4 text-lg">Quality time is good behavior with our service.</p>
 
          </div>
      </header>
@@ -71,6 +71,49 @@
              @endforelse
          </div>
      </div>
+
+    <section class="container mx-auto p-8">
+        <h2 class="mb-6 text-center text-2xl font-bold">Our Facilities</h2>
+        <div class="space-y-12">
+            <!-- Facility 1 -->
+            <div class="flex flex-col items-center md:flex-row md:space-x-6">
+                <div class="md:w-1/2">
+                    <img src="https://picsum.photos/seed/picsum/200/300" alt="Gym Facility" class="w-full max-w-xs max-h-48 mx-auto rounded-lg object-cover">
+                </div>
+                <div class="mt-4 md:mt-0 md:w-1/2">
+                    <h3 class="text-xl font-bold">GYM</h3>
+                    <p class="mt-4 text-gray-600">
+                        Our state-of-the-art gym features the latest equipment and personal training options to help you
+                        stay fit and healthy during your stay.
+                    </p>
+                </div>
+             </div>
+            <!-- Facility 2 -->
+            <div class="flex flex-col items-center md:flex-row-reverse md:space-x-reverse md:space-x-6">
+                <div class="md:w-1/2">
+                    <img src="https://picsum.photos/seed/picsum/200/300" alt="Spa Facility" class="w-full max-w-xs max-h-48 mx-auto rounded-lg object-cover">
+                </div>
+                <div class="mt-4 md:mt-0 md:w-1/2">
+                    <h3 class="text-xl font-bold">SPA</h3>
+                    <p class="mt-4 text-gray-600">
+                        Indulge in our luxurious spa services that offer relaxation and rejuvenation for your mind and body.
+                    </p>
+                </div>
+            </div>
+            <!-- Facility 3 -->
+            <div class="flex flex-col items-center md:flex-row md:space-x-6">
+                <div class="md:w-1/2">
+                    <img src="https://picsum.photos/seed/picsum/200/300" alt="Pool Facility" class="w-full max-w-xs max-h-48 mx-auto rounded-lg object-cover">
+                </div>
+                <div class="mt-4 md:mt-0 md:w-1/2">
+                    <h3 class="text-xl font-bold">Pool</h3>
+                    <p class="mt-4 text-gray-600">
+                        Enjoy our outdoor pool with breathtaking views, perfect for relaxation or family fun.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
      <!-- Footer -->
      <footer class="bg-gray-800 p-4 text-center text-white">
