@@ -19,7 +19,7 @@
         </div>
     @endif
 
-    <div class="grid bg-[url('C:\laragon\www\UAS-PEMMWEB\resources\views\landing\background.png')] bg-cover bg-no-repeat w-full h-[640px]">
+    <div class="grid bg-[url('/public/background.png')] bg-cover bg-no-repeat w-full h-[640px]">
         
         <a href="{{ route('landing') }}" class="w-[200px] h-[60px] bg-blue-500 bg-opacity-50 place-self-center rounded-[50px]">
             <p class="font-serif text-5xl text-white place-self-center">MyApp</p>

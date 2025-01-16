@@ -1,7 +1,7 @@
  @extends('layouts.hotel')
 
  @section('content')
-    <div class="bg-[url('C:\laragon\www\UAS-PEMMWEB\resources\views\landing\background.png')] bg-cover bg-no-repeat w-full h-[640px]">
+    <div class="bg-[url('/public/background.png')] bg-cover bg-no-repeat w-full h-[640px]">
         <nav class="w-[1200px] h-[55px] flex place-self-center justify-between border-b-4 border-black">
             <div class="ml-[20px] place-self-center">
                 <a href="{{ route('landing') }}" class="text-xl font-bold text-white">MyApp</a>
@@ -59,7 +59,7 @@
         </div>
 
         <!-- Label -->
-        <form action="#" class="mt-[80px]">
+        <form action="{{route('detail-reservasi')}}" class="mt-[80px]">
             <div class="flex items-center ">
                 <a class="ml-[190px] block text-base font-serif text-white">
                     Pilih Kamar :</a>
@@ -131,7 +131,7 @@
             </div>
             
             <div class="container mt-[30px] flex items-center justify-center">
-                <div class="bg-[url('C:\laragon\www\UAS-PEMMWEB\resources\views\landing\dummyImg.jpg')] bg-cover bg-no-repeat w-[500px] h-[500px] rounded">
+                <div class="bg-[url('/public/dummyImg.jpg')] bg-cover bg-no-repeat w-[500px] h-[500px] rounded">
                 </div>
 
                 <div class="w-[700px] h-[500px] font-serif flex items-center justify-center ml-[30px] ">
@@ -172,12 +172,12 @@
                     </div>
                 </div>
 
-                <div class="bg-[url('C:\laragon\www\UAS-PEMMWEB\resources\views\landing\dummyImg.jpg')] bg-cover bg-no-repeat w-[500px] h-[500px] rounded">
+                <div class="bg-[url('/public/dummyImg.jpg')] bg-cover bg-no-repeat w-[500px] h-[500px] rounded">
                 </div>
             </div>
 
             <div class="container mt-[30px] flex items-center justify-center">
-                <div class="bg-[url('C:\laragon\www\UAS-PEMMWEB\resources\views\landing\dummyImg.jpg')] bg-cover bg-no-repeat w-[500px] h-[500px] rounded">
+                <div class="bg-[url('/public/dummyImg.jpg')] bg-cover bg-no-repeat w-[500px] h-[500px] rounded">
                 </div>
 
                 <div class="w-[700px] h-[500px] font-serif flex items-center justify-center ml-[30px] ">

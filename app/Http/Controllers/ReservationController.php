@@ -210,4 +210,9 @@ class ReservationController extends Controller
 
         return redirect()->route('reservation.index')->with('success', 'Reservation deleted successfully!');
     }
+
+    public function detailReservation()
+    {
+        return view('reservasi.reservasi');
+    }
 }

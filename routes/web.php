@@ -32,6 +32,7 @@ Route::middleware('guest')->group(function () {
     
 });
 
+Route::get('/reservasi', [ReservationController::class, 'detailReservation'])->name('detail-reservasi');
 
 // Routes for authenticated users
 Route::middleware('auth')->group(function () {
