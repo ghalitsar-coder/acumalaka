@@ -46,6 +46,11 @@ Route::middleware('auth')->group(function () {
         Route::get('/reserve-room', function () {
             return view('guests.reservation.index');
         } )->name('detail-reservation');
+        Route::post('/reserve-room',[ReservationController::class, 'reserve']  )->name('reserve-room');
+
+        Route::get('/payments/create/{reservation}', [PaymentController::class, 'showPaymentForm'])->name('user-payments.create');
+        Route::post('/payments/{reservation}', [PaymentController::class, 'createPayment'])->name('user-payments.store');
+
         Route::resource('hotels', RoomController::class);
         // can u do it here for reservation ?
         

@@ -21,6 +21,11 @@
              @endauth
          </div>
      </nav>
+     @if (session('success'))
+         <div class="mb-4 rounded border border-green-400 bg-green-100 px-4 py-3 text-green-700">
+             {{ session('success') }}
+         </div>
+     @endif
      <!-- Hero Section -->
      <header class="bg-blue-500 text-white">
          <div class="container mx-auto p-8 text-center">
@@ -29,10 +34,6 @@
 
          </div>
      </header>
-     <form action=" {{ route('detail-reservation') }} ">
-         <button type='submit'>bikin reservasi</button>
-     </form>
-
      <!-- Features Section -->
      <section class="container mx-auto p-8">
          <h2 class="mb-6 text-center text-2xl font-bold">Our Features</h2>
@@ -70,7 +71,6 @@
              @endforelse
          </div>
      </div>
-
 
      <!-- Footer -->
      <footer class="bg-gray-800 p-4 text-center text-white">
