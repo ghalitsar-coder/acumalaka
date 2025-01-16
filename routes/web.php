@@ -32,21 +32,25 @@ Route::middleware('guest')->group(function () {
     
 });
 
+Route::get('/madep-pisan', function () {
+    return view('guests.reservation.index');
+} )->name('detail-reservation');
 
 // Routes for authenticated users
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-    
     // Routes for guests
-    Route::middleware('guest')->group(function () {
+    Route::middleware('guest.role')->group(function () {
         
         Route::get('/rooms/{room_type}', [RoomController::class, 'showRoomForm'])->name('rooms-details');
-        Route::post('/reserve-room', [ReservationController::class, 'store'])->name('reserve-room');
+        Route::get('/reserve-room', function () {
+            return view('guests.reservation.index');
+        } )->name('detail-reservation');
         Route::resource('hotels', RoomController::class);
-    // can u do it here for reservation ?
-       
+        // can u do it here for reservation ?
+        
     });
-
+    
     // Routes for admins
     Route::middleware('admin')->group(function () {
         Route::resource('rooms', RoomController::class);

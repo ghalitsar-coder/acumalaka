@@ -12,7 +12,7 @@ class GuestMiddleware
     {
         if (Auth::check() && Auth::user()->role !== 'guest') {
             // Redirect non-guest users to the admin dashboard or another page
-            return redirect()->route('staff');  // You can define your own admin dashboard route
+            return redirect()->route('/staff');  // You can define your own admin dashboard route
         }
 
         return $next($request);

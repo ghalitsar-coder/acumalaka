@@ -29,6 +29,9 @@
 
          </div>
      </header>
+     <form action=" {{ route('detail-reservation') }} ">
+         <button type='submit'>bikin reservasi</button>
+     </form>
 
      <!-- Features Section -->
      <section class="container mx-auto p-8">
@@ -68,7 +71,6 @@
          </div>
      </div>
 
-     <a href="{{ route('dashboard-apa-aja-dokter') }}"> kita mau kemana dashboard dokter </a>
 
      <!-- Footer -->
      <footer class="bg-gray-800 p-4 text-center text-white">
