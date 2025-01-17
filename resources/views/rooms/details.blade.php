@@ -5,20 +5,20 @@
     <div class="container mx-auto px-4 py-6 sm:px-6 lg:px-8">
 
         <div
-            class="grid  grid-cols-[1fr,1.5fr,1fr] items-center justify-center gap-2.5 bg-red-300 ">
+            class="grid  grid-cols-[1fr,1.5fr,1fr] items-center justify-center gap-2.5  ">
 
             <img src="{{ asset('img5.jpg') }}" alt=""
                 class='!h-full w-full rounded-2xl object-cover'>
-            <div class="!h-[500px] ">
+            <!-- <div class="!h-[500px] gap-5">
                 <img src="{{ asset('img6.jpg') }}" alt=""
                     class='!h-1/2 w-full rounded-2xl object-cover'>
-                <div class="grid !h-1/2 grid-cols-[1fr,1fr] space-2.5">
+                <div class="grid !h-1/2 grid-cols-[1fr,1fr] gap-2.5 space-2.5">
                     <img src="{{ asset('img7.jpg') }}" alt=""
                         class='!h-full w-full rounded-2xl object-cover'>
-                    <img src="{{ asset('img11.jpg') }}" alt=""
-                        class='!h-full w-full rounded-2xl object-cover'>
-                </div>
-            </div>
+                    </div>
+                </div> -->
+                <img src="{{ asset('img11.jpg') }}" alt=""
+                    class='!h-full w-full rounded-2xl object-cover'>
 
             <img src="{{ asset('img16.jpg') }}" alt=""
                 class='!h-full w-full rounded-2xl object-cover'>

@@ -31,47 +31,56 @@
             </div>
 
             <!-- Profile dropdown -->
-            <div class="hidden sm:ml-6 sm:flex sm:items-center">
-                <div x-data="{ open: false }" class="relative ml-3">
-                    <div>
-                        <button @click="open = !open" type="button"
-                            class="m-auto flex rounded-full border border-orange-300 px-2.5 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                            id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-                            <h2 class='-translate-y-.5'>
+            @auth
+                <div class="hidden sm:ml-6 sm:flex sm:items-center">
+                    <div x-data="{ open: false }" class="relative ml-3">
+                        <div>
+                            <button @click="open = !open" type="button"
+                                class="m-auto flex rounded-full border border-orange-300 px-2.5 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                                id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                                <h2 class='-translate-y-.5'>
 
-                                {{ substr(auth()->user()->guest->first_name, 0, 1) }}
-                            </h2>
-                        </button>
-                    </div>
-
-                    <!-- Dropdown menu -->
-                    <div x-show="open"
-                        @click.away="open = false"
-                        x-transition:enter="transition ease-out duration-100"
-                        x-transition:enter-start="transform opacity-0 scale-95"
-                        x-transition:enter-end="transform opacity-100 scale-100"
-                        x-transition:leave="transition ease-in duration-75"
-                        x-transition:leave-start="transform opacity-100 scale-100"
-                        x-transition:leave-end="transform opacity-0 scale-95"
-                        class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-                        role="menu">
-                        <a href="{{ route('landing') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                            role="menuitem">Your Profile</a>
-                        <a href="{{ route('landing') }}"
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Your
-                            Bookings</a>
-                        <form method="POST" action="{{ route('landing') }}">
-                            @csrf
-                            <button type="submit"
-                                class="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
-                                role="menuitem">
-                                Sign out
+                                    {{ substr(auth()->user()->guest->first_name, 0, 1) }}
+                                </h2>
                             </button>
-                        </form>
+                        </div>
+
+                        <!-- Dropdown menu -->
+                        <div x-show="open"
+                            @click.away="open = false"
+                            x-transition:enter="transition ease-out duration-100"
+                            x-transition:enter-start="transform opacity-0 scale-95"
+                            x-transition:enter-end="transform opacity-100 scale-100"
+                            x-transition:leave="transition ease-in duration-75"
+                            x-transition:leave-start="transform opacity-100 scale-100"
+                            x-transition:leave-end="transform opacity-0 scale-95"
+                            class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                            role="menu">
+                            <a href="{{ route('landing') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                role="menuitem">Your Profile</a>
+                            <a href="{{ route('landing') }}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Your
+                                Bookings</a>
+                            <form method="POST" action="{{ route('landing') }}">
+                                @csrf
+                                <button type="submit"
+                                    class="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
+                                    role="menuitem">
+                                    Sign out
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-
+            @endauth
+            @guest
+                <div class="hidden sm:ml-6 sm:flex sm:items-center">
+                    <a href="{{ route('login') }}"
+                        class="m-auto flex rounded-full border  px-2.5 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                        Login
+                    </a>
+                </div>
+            @endguest
             <!-- Mobile menu button -->
             <div class="flex items-center sm:hidden">
                 <button @click="mobileMenu = !mobileMenu" type="button"
@@ -95,3 +104,4 @@
     </div>
     </div>
 </nav>
+
