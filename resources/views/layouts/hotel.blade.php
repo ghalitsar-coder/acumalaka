@@ -11,7 +11,7 @@
 
 <body class="bg-gray-100">
     <main
-        class="mx-auto !w-full max-w-7xl sm:px-6 lg:px-8">
+        class="mx-auto sm:px-6 lg:px-8">
 
         @yield('content')
     </main>
