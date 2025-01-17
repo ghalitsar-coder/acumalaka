@@ -16,6 +16,6 @@ class CheckGuestRole
         }
 
         // Jika bukan guest, arahkan ke halaman lain, misalnya home
-        return redirect()->route('/');
+        return redirect()->route('staff');
     }
 }

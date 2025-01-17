@@ -40,7 +40,7 @@
                                 id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                 <h2 class='-translate-y-.5'>
 
-                                    {{ substr(auth()->user()->guest->first_name, 0, 1) }}
+                                    {{ substr(auth()->user()->guest->first_name ?? "A", 0, 1)  }}
                                 </h2>
                             </button>
                         </div>

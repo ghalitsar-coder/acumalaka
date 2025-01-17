@@ -115,11 +115,7 @@
                     </textarea>
                 </div>
 
-                <label for="role">Role:</label>
-                <select name="role" id="role">
-                    <option value="guest">Guest</option>
-                    <option value="staff">Staff</option>
-                </select><br>
+            
 
                 <!-- Remember Me -->
 
