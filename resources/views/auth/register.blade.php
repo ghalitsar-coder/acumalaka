@@ -89,16 +89,37 @@
                         class="mt-1 block w-full rounded-sm border-gray-300 py-1.5 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
                 </div>
 
-                <label for="role">Role:</label>
-                <select name="role" id="role">
-                    <option value="guest">Guest</option>
-                    <option value="staff">Staff</option>
-                </select><br>
+                <div class="mb-4">
+                    <label for="phone" class="block text-sm font-medium text-gray-700">
+                        Phone
+                    </label>
+                    <input
+                        id="phone"
+                        type="text"
+                        name="phone"
+                        value="{{ old('phone') }}"
+                        required
+                        class="mt-1 block w-full rounded-sm border-gray-300 py-1.5 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
+                </div>
+
+                <div class="mb-4">
+                    <label for="address" class="block text-sm font-medium text-gray-700">
+                        Address
+                    </label>
+                    <textarea
+                        id="address"
+                        type="text"
+                        name="address"
+                        value="{{ old('address') }}"
+                        class="mt-1 block w-full rounded-sm border-gray-300 py-1.5 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                    </textarea>
+                </div>
+
+            
 
                 <!-- Remember Me -->
-              
 
-                <div class="flex items-center space-x-1.5 my-3">
+                <div class="my-3 flex items-center space-x-1.5">
                     <h3> Sudah punya akun ?</h3> <span class="text-blue-800/80"> <a href="/login">Sign in</a></span>
                 </div>
 
@@ -113,3 +134,4 @@
         </div>
     </div>
 @endsection
+

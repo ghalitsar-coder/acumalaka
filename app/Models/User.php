@@ -43,4 +43,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function guest()
+{
+    return $this->hasOne(Guest::class, 'user_id');
+}
+
 }

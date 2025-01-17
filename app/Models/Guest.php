@@ -14,6 +14,7 @@ class Guest extends Model
     protected $primaryKey = 'id_guest';
 
     protected $fillable = [
+        'user_id',
         'first_name',
         'last_name',
         'email',
@@ -33,4 +34,9 @@ class Guest extends Model
         // Check if the guest has any reservation that is not checked out or cancelled
         return $this->reservations()->whereIn('status', ['confirmed', 'checked_in'])->exists();
     }
+    public function user()
+{
+    return $this->belongsTo(User::class);
+}
+
 }

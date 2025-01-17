@@ -8,6 +8,9 @@ use App\Models\Service;
 use App\Models\Guest;
 use App\Models\Room;
 use App\Models\Staff;
+use Illuminate\Support\Facades\Auth;
+
+
 use Illuminate\Http\Request;
 use Carbon\Carbon; 
 
@@ -209,5 +212,121 @@ class ReservationController extends Controller
         $reservation->delete();
 
         return redirect()->route('reservation.index')->with('success', 'Reservation deleted successfully!');
+    }
+
+
+  
+
+    public function reserve(Request $request)
+    {
+        // Validate the request
+        $validated = $request->validate([
+            'check_in_date' => 'required|date|after_or_equal:today',
+            'check_out_date' => 'required|date|after:check_in_date',
+            'id_room' => 'required|exists:rooms,id_room',
+            'id_service' => 'required|exists:services,id_service',
+        ]);
+        
+        try {
+            // Get user's guest record
+            $guest = Guest::where('user_id', Auth::id())->firstOrFail();
+            
+            // Get available staff member (you might want to customize this logic)
+            $staff = Staff::first();
+            
+            $checkIn = Carbon::parse($validated['check_in_date']);
+            $checkOut = Carbon::parse($validated['check_out_date']);
+            
+            
+            // Check if room is available and not in maintenance
+            $room = Room::findOrFail($validated['id_room']);
+
+            if ($room->status === 'maintenance') {
+                return back()->withInput()->with('error', 'Selected room is currently under maintenance.');
+            }
+            
+            if ($this->isRoomAvailable($validated['id_room'], $checkIn, $checkOut)) {
+                // Calculate total price based on room rate and service
+                $service = Service::findOrFail($validated['id_service']);
+                $nights = $checkIn->diffInDays($checkOut);
+                $totalPrice = ($room->price_per_night * $nights) + $service->price;
+                
+                // Create the reservation
+                $reservation = Reservation::create([
+                    'id_guest' => $guest->id_guest,
+                    'id_room' => $validated['id_room'],
+                    'id_staff' => $staff->id_staff,
+                    'id_service' => $validated['id_service'],
+                    'check_in_date' => $checkIn,
+                    'check_out_date' => $checkOut,
+                    'total_price' => $totalPrice,
+                    'status' => 'confirmed'
+                ]);
+                // dd($request->all());
+
+                // Update room status
+                $room->update(['status' => 'occupied']);
+
+                return redirect()
+                ->route('user-payments.create', ['reservation' => $reservation->id_reservation])
+                ->with('success', 'Reservation created! Please complete your payment.');
+            }
+
+            return back()
+                ->withInput()
+                ->with('error', 'Selected room is not available for these dates.');
+
+        } catch (\Exception $e) {
+            return back()
+                ->withInput()
+                ->with('error', 'There was a problem creating your reservation: ' . $e->getMessage());
+        }
+    }
+
+    private function isRoomAvailable($roomId, $checkIn, $checkOut)
+    {
+        // Check existing reservations
+        $existingReservation = Reservation::where('id_room', $roomId)
+            ->where(function ($query) use ($checkIn, $checkOut) {
+                $query->whereBetween('check_in_date', [$checkIn, $checkOut])
+                    ->orWhereBetween('check_out_date', [$checkIn, $checkOut])
+                    ->orWhere(function ($q) use ($checkIn, $checkOut) {
+                        $q->where('check_in_date', '<=', $checkIn)
+                            ->where('check_out_date', '>=', $checkOut);
+                    });
+            })
+            ->whereIn('status', ['confirmed', 'checked_in'])
+            ->exists();
+
+        // Check room status
+        $room = Room::find($roomId);
+        $roomUnavailable = in_array($room->status, ['occupied', 'maintenance', 'cleaning']);
+
+        return !$existingReservation && !$roomUnavailable;
+    }
+
+    // public function show($id)
+    // {
+    //     $reservation = Reservation::with([
+    //         'guest' => function($query) {
+    //             $query->select('id_guest', 'first_name', 'last_name', 'email', 'phone');
+    //         },
+    //         'room' => function($query) {
+    //             $query->select('id_room', 'room_number', 'room_type', 'price_per_night');
+    //         },
+    //         'service' => function($query) {
+    //             $query->select('id_service', 'service_type', 'price');
+    //         },
+    //         'staff' => function($query) {
+    //             $query->select('id_staff', 'first_name', 'last_name', 'position');
+    //         }
+    //     ])->findOrFail($id);
+
+    //     return view('reservations.show', compact('reservation'));
+    // }
+
+    public function detailReservation()
+    {
+        return view('reservasi.reservasi');
     }
 }

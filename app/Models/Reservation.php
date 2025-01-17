@@ -24,6 +24,12 @@ class Reservation extends Model
         'status',
     ];
 
+    protected $casts = [
+        'check_in_date' => 'date',
+        'check_out_date' => 'date',
+        'total_price' => 'decimal:2'
+    ];
+
     /**
      * Get the guest associated with the reservation.
      */

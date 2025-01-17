@@ -9,6 +9,7 @@ use App\Models\Staff;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
  
+use Carbon\Carbon;
 
 class PaymentController extends Controller
 {
@@ -39,6 +40,7 @@ class PaymentController extends Controller
     
     return view('payment.create', compact('reservations', 'staff'));
     }
+
 
     /**
      * Store a newly created payment in the database.
@@ -139,4 +141,56 @@ class PaymentController extends Controller
 
         return redirect()->route('payment.index')->with('success', 'Payment deleted successfully!');
     }
+
+
+    public function showPaymentForm(Reservation $reservation)
+    {
+        // Make sure the reservation belongs to the logged-in user
+        if ($reservation->guest->user_id !== auth()->id()) {
+            abort(403);
+        }
+
+        return view('payment.payment-form', compact('reservation'));
+    }
+    public function createPayment(Request $request, Reservation $reservation)
+    {
+        $validated = $request->validate([
+            'payment_method' => 'required|string|max:50',
+            'amount' => 'required|numeric|min:0'
+        ]);
+
+        try {
+            // Verify payment amount matches reservation total
+            if ($validated['amount'] != $reservation->total_price) {
+                return back()->with('error', 'Payment amount must match reservation total.');
+            }
+
+            // Get available staff member (you might want to modify this logic)
+            $staff = Staff::first();
+
+            // Create payment record
+            $payment = Payment::create([
+                'id_reservation' => $reservation->id_reservation,
+                'id_staff' => $staff->id_staff,
+                'amount' => $validated['amount'],
+                'payment_date' => Carbon::now(),
+                'payment_method' => $validated['payment_method'],
+                'payment_status' => 'pending' // Initial status
+            ]);
+
+            // Here you would typically integrate with a payment gateway
+            // For now, we'll simulate a successful payment
+            $payment->update(['payment_status' => 'success']);
+
+            return redirect()
+                ->route('landing', $reservation->id_reservation)
+                ->with('success', 'Payment processed successfully!');
+
+        } catch (\Exception $e) {
+            return back()
+                ->withInput()
+                ->with('error', 'Payment processing failed: ' . $e->getMessage());
+        }
+    }
+
 }
