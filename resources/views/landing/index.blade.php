@@ -1,12 +1,21 @@
  @extends('layouts.hotel')
 
  @section('content')
-     <div class="container">
-         <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-             <!-- Card 1 -->
+     @include('comp.jumbotron')
+     @include('comp.aboutus')
 
-             @forelse ($rooms as $room)
-                 <a href="{{ url('/rooms/' . $room->room_type) }}"
+     <!-- Card 1 -->
+     <div class="container mx-auto grid grid-cols-4 gap-x-5">
+
+         @foreach ($rooms as $room)
+             @include('comp.card', ['room' => $room])
+         @endforeach
+
+     </div>
+ @endsection
+
+ <!-- @forelse ($rooms as $room)
+<a href="{{ url('/rooms/' . $room->room_type) }}"
                      class="block transition hover:shadow-lg">
                      <div class="overflow-hidden rounded-lg bg-white shadow-lg">
                          <img class="h-48 w-full object-cover" src="/img1.jpg"
@@ -19,18 +28,8 @@
                          </div>
                      </div>
                  </a>
-             @empty
+@empty
                  <p class="text-center">
                      No rooms available.</p>
-             @endforelse
-
-         </div>
-     </div>
-     <div>
-         <!-- Footer -->
-         <footer class="mt-10 bg-gray-800 p-4 text-center text-white">
-             <p>&copy; 2025 Your Website. All rights reserved.</p>
-         </footer>
-     </div>
- @endsection
+@endforelse -->
 

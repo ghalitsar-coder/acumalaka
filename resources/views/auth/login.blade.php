@@ -3,10 +3,7 @@
 
 @section('title', 'Login - Hotel App')
 
-@section('auth-header')
-    <p class="mt-2 text-sm text-gray-600">Please sign in to your account</p>
-@endsection
-
+ 
 @section('auth-content')
     @if ($errors->any())
         <div
@@ -58,7 +55,7 @@
                 </div>
 
                 <!-- Remember Me -->
-                <div class="mb-4">
+                <!-- <div class="mb-4">
                     <label for="remember_me" class="inline-flex items-center">
                         <input
                             id="remember_me"
@@ -69,10 +66,10 @@
                             Remember me
                         </span>
                     </label>
-                </div>
+                </div> -->
 
                 <div class="flex items-center space-x-1.5 my-3">
-                    <h3> Beluim punya akun ?</h3> <span class="text-blue-800/80"> <a href="/register">Sign up</a></span>
+                    <h3> Belum punya akun ?</h3> <span class="text-blue-800/80"> <a href="/register">Sign up</a></span>
                 </div>
                 <div class="flex items-center justify-end">
                     <button

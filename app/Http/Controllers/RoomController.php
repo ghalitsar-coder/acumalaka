@@ -29,12 +29,37 @@ class RoomController extends Controller
         ->get();
 
     // Filter hanya room_type yang memiliki data
-    $filteredRooms = $rooms->filter(function ($room) use ($roomTypes) {
-        return in_array($room->room_type, $roomTypes);
+    $rooms = $rooms->map(function ($room) {
+        // Data deskripsi berdasarkan tipe ruangan
+        $descriptions = [
+            'single' => 'A cozy single room perfect for solo travelers.',
+            'double' => 'A spacious double room ideal for couples.',
+            'queen' => 'A luxurious queen room with ample space.',
+            'king' => 'A majestic king room offering premium comfort.',
+        ];
+
+        // Data ulasan dummy
+        $reviews = [
+            'single' => 4.5,
+            'double' => 4.7,
+            'queen' => 4.8,
+            'king' => 4.9,
+        ];
+        $images = [
+            'single' => '/img5.jpg',
+            'double' => '/img6.jpg',
+            'queen' => '/img7.jpg',
+            'king' =>'/img15.jpg',
+        ];
+
+        // Tambahkan data dummy ke objek room
+        $room->desc = $descriptions[$room->room_type] ?? 'Description not available';
+        $room->reviews = $reviews[$room->room_type] ?? 0;
+        $room->img = $images[$room->room_type] ?? '/img2.jpg';
+
+        return $room;
     });
-    // $rooms = Room::select('room_type', 'image')->distinct()->get();
-    // Kirim data ke view
-    return view('landing.index', ['rooms' => $filteredRooms]);
+    return view('landing.index', ['rooms' => $rooms]);
 }
 
 public function roomDetails($room_type)
