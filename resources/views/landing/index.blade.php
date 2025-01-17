@@ -83,9 +83,7 @@
                 <div class="mt-4 md:mt-0 md:w-1/2">
                     <h3 class="text-xl font-bold">GYM</h3>
                     <p class="mt-4 text-gray-600">
-                        Our state-of-the-art gym features the latest equipment and personal training options to help you
-                        stay fit and healthy during your stay.
-                    </p>
+                    Experience the ultimate fitness journey at our modern and fully-equipped gym. Designed for your comfort and convenience, our gym features state-of-the-art equipment to help you maintain your workout routine during your stay. Whether you're looking for light exercises, strength training, or cardio sessions, our facility is tailored to meet all your fitness needs. Enjoy your workout in a serene environment that inspires energy and keeps you motivated throughout the day.</p>
                 </div>
              </div>
             <!-- Facility 2 -->
@@ -96,8 +94,7 @@
                 <div class="mt-4 md:mt-0 md:w-1/2">
                     <h3 class="text-xl font-bold">SPA</h3>
                     <p class="mt-4 text-gray-600">
-                        Indulge in our luxurious spa services that offer relaxation and rejuvenation for your mind and body.
-                    </p>
+                    Indulge in a world of relaxation and rejuvenation at our luxurious spa. Let the stress melt away as you enjoy our wide range of treatments, including soothing massages, revitalizing facials, and body therapies designed to pamper you from head to toe. With a serene ambiance and professional therapists, our spa offers the perfect escape to restore your mind, body, and soul. Treat yourself to a truly blissful experience during your stay.</p>
                 </div>
             </div>
             <!-- Facility 3 -->
@@ -108,8 +105,7 @@
                 <div class="mt-4 md:mt-0 md:w-1/2">
                     <h3 class="text-xl font-bold">Pool</h3>
                     <p class="mt-4 text-gray-600">
-                        Enjoy our outdoor pool with breathtaking views, perfect for relaxation or family fun.
-                    </p>
+                    Dive into relaxation and leisure at our stunning pool, the perfect spot to unwind and refresh. Surrounded by a serene atmosphere, our pool offers a haven for both relaxation and fun. Whether you're taking a calming swim, lounging by the water, or enjoying quality time with family and friends, our pool is designed to enhance your stay with comfort and tranquility. Let the soothing waters provide a refreshing escape from your daily routine.</p>
                 </div>
             </div>
             <!-- Facility 4 -->
@@ -120,8 +116,7 @@
                 <div class="mt-4 md:mt-0 md:w-1/2">
                     <h3 class="text-xl font-bold">Restaurant</h3>
                     <p class="mt-4 text-gray-600">
-                        Indulge in our luxurious spa services that offer relaxation and rejuvenation for your mind and body.
-                    </p>
+                    Delight your taste buds with an exceptional dining experience at our restaurant. Offering a diverse menu of local and international cuisines, every dish is prepared with the finest ingredients to ensure quality and flavor. Whether you're enjoying a hearty breakfast, a leisurely lunch, or a romantic dinner, our restaurant provides a warm and inviting ambiance. Pair your meals with our selection of beverages and let us take you on a culinary journey that elevates your stay.</p>
                 </div>
             </div>
             <!-- Facility 5 -->
@@ -132,8 +127,7 @@
                 <div class="mt-4 md:mt-0 md:w-1/2">
                     <h3 class="text-xl font-bold">Lounge Bar</h3>
                     <p class="mt-4 text-gray-600">
-                        Enjoy our outdoor pool with breathtaking views, perfect for relaxation or family fun.
-                    </p>
+                    Unwind and socialize in style at our elegant lounge bar. Offering a relaxed ambiance, it’s the perfect place to enjoy a signature cocktail, fine wine, or premium spirits. Whether you’re catching up with friends, holding casual meetings, or simply savoring some quiet time, our lounge bar provides a sophisticated setting for every occasion. Pair your drink with our delightful selection of light bites and let the atmosphere elevate your evening.</p>
                 </div>
             </div>
             <!-- Facility 4 -->
@@ -144,8 +138,7 @@
                 <div class="mt-4 md:mt-0 md:w-1/2">
                     <h3 class="text-xl font-bold">Playground</h3>
                     <p class="mt-4 text-gray-600">
-                        Indulge in our luxurious spa services that offer relaxation and rejuvenation for your mind and body.
-                    </p>
+                    Bring joy to your little ones at our vibrant and safe playground. Designed with fun and creativity in mind, the playground offers a variety of activities to keep children entertained for hours. From slides to climbing frames and interactive games, it's the perfect space for kids to play, explore, and make happy memories. Let them enjoy their time while you relax, knowing they are in a secure and enjoyable environment.</p>
                 </div>
             </div>
         </div>
