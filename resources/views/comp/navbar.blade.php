@@ -7,7 +7,7 @@
             <div class="flex">
                 <div class="flex flex-shrink-0 items-center">
                     <a href="{{ route('landing') }}" class="text-xl font-bold text-blue-600">
-                        HotelName
+                        Kings Hotel
                     </a>
                 </div>
                 <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
@@ -61,7 +61,7 @@
                             <a href="{{ route('landing') }}"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Your
                                 Bookings</a>
-                            <form method="POST" action="{{ route('landing') }}">
+                            <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <button type="submit"
                                     class="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
@@ -76,7 +76,7 @@
             @guest
                 <div class="hidden sm:ml-6 sm:flex sm:items-center">
                     <a href="{{ route('login') }}"
-                        class="m-auto flex rounded-full border  px-2.5 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                        class="m-auto flex rounded-full border px-2.5 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                         Login
                     </a>
                 </div>
