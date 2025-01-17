@@ -1,7 +1,29 @@
 @extends('layouts.hotel')
 
 @section('content')
-    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+
+    <div class="container mx-auto px-4 py-6 sm:px-6 lg:px-8">
+
+        <div
+            class="grid  grid-cols-[1fr,1.5fr,1fr] items-center justify-center gap-2.5 bg-red-300 ">
+
+            <img src="{{ asset('img5.jpg') }}" alt=""
+                class='!h-full w-full rounded-2xl object-cover'>
+            <div class="!h-[500px] ">
+                <img src="{{ asset('img6.jpg') }}" alt=""
+                    class='!h-1/2 w-full rounded-2xl object-cover'>
+                <div class="grid !h-1/2 grid-cols-[1fr,1fr] space-2.5">
+                    <img src="{{ asset('img7.jpg') }}" alt=""
+                        class='!h-full w-full rounded-2xl object-cover'>
+                    <img src="{{ asset('img11.jpg') }}" alt=""
+                        class='!h-full w-full rounded-2xl object-cover'>
+                </div>
+            </div>
+
+            <img src="{{ asset('img16.jpg') }}" alt=""
+                class='!h-full w-full rounded-2xl object-cover'>
+        </div>
+
         <div class="rounded-lg bg-white p-6 shadow">
             <h2 class="mb-4 text-2xl font-bold">Book Your Stay</h2>
 
