@@ -31,10 +31,10 @@ Route::middleware('guest')->group(function () {
 
     
 });
+ 
 
-Route::get('/madep-pisan', function () {
-    return view('guests.reservation.index');
-} )->name('detail-reservation');
+ 
+Route::get('/reservasi', [ReservationController::class, 'detailReservation'])->name('detail-reservasi');
 
 // Routes for authenticated users
 Route::middleware('auth')->group(function () {

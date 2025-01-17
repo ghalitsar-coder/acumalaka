@@ -325,4 +325,8 @@ class ReservationController extends Controller
     //     return view('reservations.show', compact('reservation'));
     // }
 
+    public function detailReservation()
+    {
+        return view('reservasi.reservasi');
+    }
 }
